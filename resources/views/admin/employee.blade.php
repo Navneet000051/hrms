@@ -6,13 +6,10 @@
 
         <div class="block-header py-lg-4 py-3">
             <div class="row g-3">
+
                 <div class="col-md-6 col-sm-12">
                     <h2 class="m-0 fs-5"><a href="javascript:void(0);" class="btn btn-sm btn-link ps-0 btn-toggle-fullwidth"><i class="fa fa-arrow-left"></i></a> Employee List</h2>
-                    <ul class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="index.html">Lucid</a></li>
-                        <li class="breadcrumb-item">Employee</li>
-                        <li class="breadcrumb-item active">Employee List</li>
-                    </ul>
+
                 </div>
                 <div class="col-md-6 col-sm-12 text-md-end">
                     <div class="d-inline-flex text-start">
@@ -39,7 +36,57 @@
                 </div>
             </div>
         </div>
+        <div class="row g-3 pb-5">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="card-title">Add Employee</h6>
 
+                    </div>
+                    <div class="card-body">
+                        <form id="wizard_with_validation" method="POST">
+
+                            <h3>Profile Information</h3>
+                            <fieldset>
+                                <div class="mb-3">
+                                    <input type="text" name="name" placeholder="First Name *" class="form-control" required="">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" name="surname" placeholder="Last Name *" class="form-control" required="">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="email" name="email" placeholder="Email *" class="form-control" required="">
+                                </div>
+                                <div class="mb-3">
+                                    <textarea name="address" cols="30" rows="3" placeholder="Address *" class="form-control no-resize" required=""></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <input min="18" type="number" name="age" placeholder="Age *" class="form-control" required="">
+                                    <div class="help-info">The warning step will show up if age is less than 18</div>
+                                </div>
+                            </fieldset>
+                            <h3>Account Information</h3>
+                            <fieldset>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="Username *" name="username" required="">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="password" class="form-control" placeholder="Password *" name="password" id="password" required="">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="password" class="form-control" placeholder="Confirm Password *" name="confirm" required="">
+                                </div>
+                            </fieldset>
+                            <h3>Address Information</h3>
+                            <fieldset>
+                                <input id="acceptTerms-2" name="acceptTerms" type="checkbox" required="">
+                                <label for="acceptTerms-2">I agree with the Terms and Conditions.</label>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
         <div class="row clearfix">
             <div class="col-lg-12">
                 <div class="card mb-4">

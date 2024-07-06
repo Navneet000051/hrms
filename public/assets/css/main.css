@@ -13813,6 +13813,18 @@
            height: 2px;
        }
    }
+
+
+   .modal-header{
+       background-color: var(--primary-color) !important;
+       color:#fff !important;
+       border-color: var(--primary-color) !important;
+   }
+
+
+
+
+
    #wrapper:before,
    #wrapper:after {
        position: fixed;
@@ -13973,7 +13985,7 @@
        z-index: -1;
        margin: 20px;
    }
-   
+
    @media (max-width: 575.98px) {
        .auth-main::before,
        .admin-main::before {
@@ -17506,4 +17518,3 @@
    div.table-responsive > div.dataTables_wrapper > div.row > div[class^="col-"]:last-child {
        padding-right: 0;
    }
-   

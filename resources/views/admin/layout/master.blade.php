@@ -16,14 +16,15 @@ $currentRoute = Route::currentRouteName();
     <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- Include CSRF token meta tag -->
     <!-- App favicon -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="{{asset('assets/css/datepicker.min.css')}}">  
-    
+    <link rel="stylesheet" href="{{asset('assets/css/datepicker.min.css')}}">
+
     <link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/nouislider.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/tagsinput.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugin/bootstrap-colorpicker/css/bootstrap-colorpicker.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css1.css')}}">
+
     <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/css1.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/dataTables.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/toastr.min.css')}}">
 </head>
@@ -74,14 +75,14 @@ $currentRoute = Route::currentRouteName();
                 </div>
                 <div class="navbar-brand ps-2 py-0">
                     <a href="{{ route('admin.admindashboard') }}" class="d-lg-none d-sm-flex">
-                       
+
                         <img src="	https://bfcsofttech.com/assets/img/logo.webp" alt="logo-dark" height="30">
                     </a>
                 </div>
 
                 <div class="d-flex flex-grow-1 align-items-center">
                     <div class="d-flex">
-                      
+
                         <form id="navbar-search" class="navbar-form search-form position-relative d-none d-md-block">
                             <input value="" class="form-control" placeholder="Search here..." type="text">
                             <button type="button" class="btn btn-secondary"><i class="fa fa-search"></i></button>
@@ -140,34 +141,34 @@ $currentRoute = Route::currentRouteName();
 
                             <!-- more link -->
                             <li class="dropdown">
-                         
+
                                 <a class="dropdown-toggle icon-menu" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">    <img src="https://bfcsofttech.com/assets/img/logo.webp" alt="logo-dark" height="30"><span class="d-none d-xl-inline-block ms-1" style="color:gray;">{{ auth()->user()->name}} </span> <i class="fa fa-angle-down d-none d-xl-inline-block"></i></a>
                                 <ul class="dropdown-menu dropdown-menu-end p-2 shadow">
                                     <li><a class="dropdown-item rounded-pill" href="{{ route('admin.adminprofile') }}"><i class="me-2 fa fa-user"></i> <span>Profile</span></a></li>
                                     <li><a class="dropdown-item rounded-pill" href="{{ route('admin.changePassword') }}"><i class="me-2 fa fa-unlock-alt"></i> <span>Change Password</span></a></li>
                                  <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item rounded-pill"  href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#smallModal"><i class="me-2 fa fa-power-off"></i> <span>Logout</span></a></li>
-                                   
+
                                 </ul>
                             </li>
-                            
+
                             <!-- <li class=""><a href="{{ route('admin.adminprofile') }}" class="icon-menu"><i class="fa fa-user"></i></a></li> -->
                             <li><a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#smallModal" class="icon-menu"><i class="fa fa-sign-out"></i></a></li>
-                            
+
                         </ul>
                     </div>
                 </div>
             </div>
         </nav>
    <!-- Default Size -->
-   
+
     <!-- Small Size -->
     <div class="modal fade" id="smallModal" tabindex="-1" aria-labelledby="smallModal" aria-hidden="false">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header pb-0"  style="border-bottom:none;">
                     <h5 class="modal-title">Logout {{ config('app.name') }}</h5>
-                   
+
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body pt-0">
@@ -182,7 +183,7 @@ $currentRoute = Route::currentRouteName();
     </div>
         <!-- Sidbar menu -->
         <div id="left-sidebar" class="sidebar">
-         
+
             <!-- nav tab: menu list -->
             <ul class="nav nav-tabs text-center mb-2" role="tablist">
                 <li class="nav-item flex-fill"><a class="nav-link active" data-bs-toggle="tab" href="#hr_menu" role="tab">HR</a></li>
@@ -207,10 +208,11 @@ $currentRoute = Route::currentRouteName();
                                     <li class="{{ $currentRoute == 'admin.employee' ? 'active' : '' }}"><a href="{{ route('admin.employee') }}">All Employees</a></li>
                                     <li class="{{ $currentRoute == 'admin.leave' ? 'active' : '' }}"><a href="{{ route('admin.leave') }}">Leave Requests</a></li>
                                     <li class="{{ $currentRoute == 'admin.attendance' ? 'active' : '' }}"><a href="{{ route('admin.attendance') }}">Attendance</a></li>
-                                    <li class="{{ $currentRoute == 'admin.role' ? 'active' : '' }}"><a href="{{ route('admin.role') }}">Departments</a></li>
+                                    <li class="{{ $currentRoute == 'admin.role' ? 'active' : '' }}"><a href="{{ route('admin.role') }}">Role</a></li>
+                                    <li class="{{ $currentRoute == 'admin.department' ? 'active' : '' }}"><a href="{{ route('admin.department') }}">Departments</a></li>
                                 </ul>
                             </li>
-                    
+
                         </ul>
                     </nav>
                 </div>
@@ -218,7 +220,7 @@ $currentRoute = Route::currentRouteName();
                     <nav class="sidebar-nav">
                         <ul class="main-menu metismenu list-unstyled">
                             <li><a href="index2.html"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
-                          
+
                         </ul>
                     </nav>
                 </div>
@@ -234,8 +236,8 @@ $currentRoute = Route::currentRouteName();
                                     <li><a href="blog-details.html">Blog Detail</a></li>
                                 </ul>
                             </li>
-                       
-          
+
+
                         </ul>
                     </nav>
                 </div>
@@ -343,7 +345,7 @@ $currentRoute = Route::currentRouteName();
         </div>
 
         @yield('content')
-   
+
         </div>
 
 </div>
@@ -360,7 +362,13 @@ $currentRoute = Route::currentRouteName();
 <script src="{{asset('assets/plugin/bootstrap-colorpicker/js/bootstrap-colorpicker.js')}}"></script>
 <script src="{{asset('assets/bundles/inputmask.bundle.js')}}"></script>
 <script src="{{asset('assets/bundles/maskedinput.bundle.js')}}"></script>
+
+<script src="{{asset('assets/bundles/jqueryvalidate.bundle.js')}}"></script>
+<script src="{{asset('assets/bundles/jquerysteps.bundle.js')}}"></script>
+
 <script src="{{asset('assets/bundles/mainscripts.bundle.js')}}"></script>
+
+
 <script src="{{asset('assets/js/pages/forms/advanced-form-elements.js')}}"></script>
 <script src="{{asset('assets/bundles/dataTables.bundle.js')}}"></script>
 
@@ -368,6 +376,7 @@ $currentRoute = Route::currentRouteName();
 <!-- page js file -->
 <script src="{{asset('assets/js/pages/index.js')}}"></script>
 <script src="{{asset('assets/js/pages/file/filemanager.js')}}"></script>
+<script src="{{asset('assets/js/pages/forms/form-wizard.js')}}"></script>
 
 <script src="{{asset('assets/bundles/toastr.bundle.js')}}"></script>
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\changeStatusController;
 use App\Http\Controllers\deleteController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HolidaysController;
 use App\Http\Controllers\LeaveController;
@@ -61,6 +62,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/leave', [LeaveController::class, 'leave'])->name('leave');
         Route::get('/attendance', [AttendanceController::class, 'attendance'])->name('attendance');
         Route::get('/role', [RoleController::class, 'role'])->name('role');
+        Route::get('/department', [DepartmentController::class, 'department'])->name('department');
 
         Route::get('/changePassword', [AdminController::class, 'changePasswordShow'])->name('changePassword');
 
@@ -68,7 +70,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::delete('/deleteData', [deleteController::class, 'destroy'])->name('DeleteData');
 
-        //update position 
+        //update position
 
         Route::post('/updatePositions', [UpdatePositionController::class, 'index'])->name('updatePositions');
     });
