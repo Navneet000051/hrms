@@ -1,6 +1,13 @@
 @extends('admin.layout.master')
 @section('content')
-
+<style>
+    .dropify-wrapper{
+        height:120px !important;
+    }
+    .profile .dropify-wrapper{
+        height:200px !important;
+    }
+</style>
 <div id="main-content">
     <div class="container-fluid">
 
@@ -46,47 +53,120 @@
                     <div class="card-body">
                         <form id="wizard_with_validation" method="POST">
 
+                            <h3>Personal Information</h3>
+                            <fieldset>
+                                <div class="row g-2">
+                              
+                                    <div class="mb-3 col-sm-12 col-lg-4">
+                                        <label class="form-label">Employee ID <small class="text-danger">*</small></label>
+                                        <input type="number" name="surname" placeholder="Employee ID *" class="form-control" required="">
+                                    </div>
+                                    <div class="mb-3 col-sm-12 col-lg-4">
+                                        <label class="form-label">First Name <small class="text-danger">*</small></label>
+                                        <input type="text" name="name" placeholder="First Name *" class="form-control" required="">
+                                    </div>
+                                    <div class="mb-3 col-sm-12 col-lg-4">
+                                        <label class="form-label">Last Name <small class="text-danger">*</small></label>
+                                        <input type="text" name="surname" placeholder="Last Name *" class="form-control" required="">
+                                    </div>
+                                    <div class="mb-3 col-sm-12 col-lg-4">
+                                        <label class="form-label">Email ID <small class="text-danger">*</small></label>
+                                        <input type="email" name="email" placeholder="Email ID  *" class="form-control" required="">
+                                    </div>
+                                    <div class="mb-3  col-sm-12 col-lg-4">
+                                        <label class="form-label">Password<small class="text-danger">*</small></label>
+                                        <input type="password" class="form-control" placeholder="Password *" name="password" id="password" required="">
+                                    </div>
+                                    <div class="mb-3  col-sm-12 col-lg-4">
+                                        <label class="form-label">Date of Birth <small class="text-danger">*</small></label>
+                                        <input type="text" data-provide="datepicker" data-date-autoclose="true"
+                                        class="form-control" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy">
+                                    </div>
+                                    <div class="mb-3 col-sm-12 col-lg-4">
+                                        <label class="form-label">Join Date <small class="text-danger">*</small></label>
+                                        <input type="text" data-provide="datepicker" data-date-autoclose="true"
+                                        class="form-control" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy">
+                                    </div>
+                                  
+                                    <div class="mb-3 col-sm-12 col-lg-4">
+                                        <label class="form-label">Role <small class="text-danger">*</small></label>
+                                        <input type="number" name="surname" placeholder="Role *" class="form-control" required="">
+                                    </div>
+
+                                    <div class="mb-3 col-sm-12 col-lg-4">
+                                        <label class="form-label">Designation <small class="text-danger">*</small></label>
+                                        <input type="text" name="designation" placeholder="designation *" class="form-control" required="">
+                                    </div>
+
+
+                                </div>
+                            </fieldset>
+                            <h3>Contact Information</h3>
+                            <fieldset>
+                                <div class="row g-2">
+                                <div class="mb-3 col-sm-12 col-lg-6">
+                                        <label class="form-label">Mobile Number <small class="text-danger">*</small></label>
+                                        <input type="number" name="name" placeholder="Mobile Number *" class="form-control" required="">
+                                    </div>
+                                    <div class="mb-3 col-sm-12 col-lg-6">
+                                        <label class="form-label">Alternate Number <small class="text-danger">*</small></label>
+                                        <input type="number" name="surname" placeholder="Alternate Number *" class="form-control" required="">
+                                    </div>
+                                    <div class="mb-3 col-sm-12 col-lg-6">
+                                        <label class="form-label">Residential Address <small class="text-danger">*</small></label>
+                                        <textarea name="address" cols="30" rows="3" placeholder="Address *" class="form-control no-resize" required=""></textarea>
+                                    </div>
+                                    <div class="mb-3 col-sm-12 col-lg-6">
+                                        <label class="form-label">Permanent Address <small class="text-danger">*</small></label>
+                                        <textarea name="address" cols="30" rows="3" placeholder="Address *" class="form-control no-resize" required=""></textarea>
+                                    </div>
+                                </div>
+                            </fieldset>
                             <h3>Profile Information</h3>
                             <fieldset>
-                                <div class="mb-3">
-                                    <input type="text" name="name" placeholder="First Name *" class="form-control" required="">
-                                </div>
-                                <div class="mb-3">
-                                    <input type="text" name="surname" placeholder="Last Name *" class="form-control" required="">
-                                </div>
-                                <div class="mb-3">
-                                    <input type="email" name="email" placeholder="Email *" class="form-control" required="">
-                                </div>
-                                <div class="mb-3">
-                                    <textarea name="address" cols="30" rows="3" placeholder="Address *" class="form-control no-resize" required=""></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <input min="18" type="number" name="age" placeholder="Age *" class="form-control" required="">
-                                    <div class="help-info">The warning step will show up if age is less than 18</div>
+                       
+                            <div class="mb-3 profile">
+                                    <input type="file" id="dropify-event">
                                 </div>
                             </fieldset>
+                          
                             <h3>Account Information</h3>
                             <fieldset>
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" placeholder="Username *" name="username" required="">
-                                </div>
-                                <div class="mb-3">
-                                    <input type="password" class="form-control" placeholder="Password *" name="password" id="password" required="">
-                                </div>
-                                <div class="mb-3">
-                                    <input type="password" class="form-control" placeholder="Confirm Password *" name="confirm" required="">
+                                <div class="row g-2">
+                                    <div class="mb-3  col-sm-12 col-lg-4">
+                                        <label class="form-label">Bank Name <small class="text-danger">*</small></label>
+                                        <input type="text" class="form-control" placeholder="Bank Name  *" name="username" required="">
+                                    </div>
+
+                                    <div class="mb-3  col-sm-12 col-lg-4">
+                                        <label class="form-label">Account Number <small class="text-danger">*</small></label>
+                                        <input type="text" class="form-control" placeholder="Account Number*" name="confirm" required="">
+                                    </div>
+                                    <div class="mb-3  col-sm-12 col-lg-4">
+                                        <label class="form-label">IFSC code <small class="text-danger">*</small></label>
+                                        <input type="text" class="form-control" placeholder="IFSC code*" name="confirm" required="">
+                                    </div>
+                                    <div class="mb-3  col-sm-12 col-lg-4">
+                                        <label class="form-label">Bank Address <small class="text-danger">*</small></label>
+                                        <textarea name="address" placeholder=" Bank Address *" class="form-control no-resize" required="" style="height:120px !important;"></textarea>
+                                    </div>
+                                    <div class="mb-3  col-sm-12 col-lg-4">
+                                        <label class="form-label">Document1 <small class="text-danger">*</small></label>
+                                        <input type="file" class="dropify">
+                                    </div>
+                                    <div class="mb-3  col-sm-12 col-lg-4">
+                                        <label class="form-label">Document2 <small class="text-danger">*</small></label>
+                                        <input type="file" class="dropify" >
+                                    </div>
+
                                 </div>
                             </fieldset>
-                            <h3>Address Information</h3>
-                            <fieldset>
-                                <input id="acceptTerms-2" name="acceptTerms" type="checkbox" required="">
-                                <label for="acceptTerms-2">I agree with the Terms and Conditions.</label>
-                            </fieldset>
+                      
                         </form>
                     </div>
                 </div>
             </div>
-    </div>
+        </div>
         <div class="row clearfix">
             <div class="col-lg-12">
                 <div class="card mb-4">

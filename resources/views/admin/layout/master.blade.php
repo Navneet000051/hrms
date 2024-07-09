@@ -22,7 +22,7 @@ $currentRoute = Route::currentRouteName();
     <link rel="stylesheet" href="{{asset('assets/css/nouislider.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/tagsinput.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugin/bootstrap-colorpicker/css/bootstrap-colorpicker.css')}}">
-
+    <link rel="stylesheet" href="{{asset('assets/css/dropify.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/css1.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/dataTables.min.css')}}">
@@ -202,16 +202,17 @@ $currentRoute = Route::currentRouteName();
                             <li class="{{ $currentRoute == 'admin.holidays' ? 'active' : '' }}"><a href="{{ route('admin.holidays') }}"><i class="fa fa-list-ul"></i><span>Holidays</span></a></li>
                             <li><a href="app-events.html"><i class="fa fa-calendar"></i><span>Events</span></a></li>
                             <li><a href="app-social.html"><i class="fa fa-globe"></i><span>HR Social</span></a></li>
-                            <li>
-                                <a href="#Employees" class="has-arrow"><i class="fa fa-users"></i><span>Employees</span></a>
-                                <ul class="list-unstyled">
-                                    <li class="{{ $currentRoute == 'admin.employee' ? 'active' : '' }}"><a href="{{ route('admin.employee') }}">All Employees</a></li>
-                                    <li class="{{ $currentRoute == 'admin.leave' ? 'active' : '' }}"><a href="{{ route('admin.leave') }}">Leave Requests</a></li>
-                                    <li class="{{ $currentRoute == 'admin.attendance' ? 'active' : '' }}"><a href="{{ route('admin.attendance') }}">Attendance</a></li>
-                                    <li class="{{ $currentRoute == 'admin.role' ? 'active' : '' }}"><a href="{{ route('admin.role') }}">Role</a></li>
-                                    <li class="{{ $currentRoute == 'admin.department' ? 'active' : '' }}"><a href="{{ route('admin.department') }}">Departments</a></li>
-                                </ul>
-                            </li>
+                            <li class="{{ in_array($currentRoute, ['admin.employee', 'admin.leave', 'admin.attendance', 'admin.role', 'admin.department']) ? 'active mm-active' : '' }}">
+    <a href="#Employees" class="has-arrow"><i class="fa fa-users"></i><span>Employees</span></a>
+    <ul class="list-unstyled {{ in_array($currentRoute, ['admin.employee', 'admin.leave', 'admin.attendance', 'admin.role', 'admin.department']) ? 'mm-show' : '' }}">
+        <li class="{{ $currentRoute == 'admin.employee' ? 'active' : '' }}"><a href="{{ route('admin.employee') }}">All Employees</a></li>
+        <li class="{{ $currentRoute == 'admin.leave' ? 'active' : '' }}"><a href="{{ route('admin.leave') }}">Leave Requests</a></li>
+        <li class="{{ $currentRoute == 'admin.attendance' ? 'active' : '' }}"><a href="{{ route('admin.attendance') }}">Attendance</a></li>
+        <li class="{{ $currentRoute == 'admin.role' ? 'active' : '' }}"><a href="{{ route('admin.role') }}">Role</a></li>
+        <li class="{{ $currentRoute == 'admin.department' ? 'active' : '' }}"><a href="{{ route('admin.department') }}">Departments</a></li>
+    </ul>
+</li>
+
 
                         </ul>
                     </nav>
@@ -362,7 +363,7 @@ $currentRoute = Route::currentRouteName();
 <script src="{{asset('assets/plugin/bootstrap-colorpicker/js/bootstrap-colorpicker.js')}}"></script>
 <script src="{{asset('assets/bundles/inputmask.bundle.js')}}"></script>
 <script src="{{asset('assets/bundles/maskedinput.bundle.js')}}"></script>
-
+<script src="{{asset('assets/bundles/dropify.bundle.js')}}"></script>
 <script src="{{asset('assets/bundles/jqueryvalidate.bundle.js')}}"></script>
 <script src="{{asset('assets/bundles/jquerysteps.bundle.js')}}"></script>
 
@@ -377,7 +378,7 @@ $currentRoute = Route::currentRouteName();
 <script src="{{asset('assets/js/pages/index.js')}}"></script>
 <script src="{{asset('assets/js/pages/file/filemanager.js')}}"></script>
 <script src="{{asset('assets/js/pages/forms/form-wizard.js')}}"></script>
-
+<script src="{{asset('assets/js/pages/forms/dropify.js')}}"></script>
 <script src="{{asset('assets/bundles/toastr.bundle.js')}}"></script>
 
   <!--- Validation CDN --->
