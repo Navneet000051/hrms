@@ -29,9 +29,9 @@ class AdminController extends Controller
         Auth::guard('admin')->logout();
         Session::flash('success', 'Logout successfully.');
         if ($roleid == 1) {
-            return redirect()->route('admin.login');
+            return redirect()->route('admin.superadmin');
         } else {
-            return redirect()->route('user.login');
+            return redirect()->route('admin.login');
         }
     }
     // public function adminprofile(Request $request)

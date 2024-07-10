@@ -4,8 +4,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\changeStatusController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\deleteController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HolidaysController;
 use App\Http\Controllers\LeaveController;
@@ -28,9 +30,12 @@ use Illuminate\Support\Facades\Route;
 //     return view('admin.layout.login');
 // });
 
-
+// Route::middleware('superadmin.guest')->group(function () {
+//     Route::get('/superadmin', [AuthController::class, 'superadmin'])->name('superadmin');
+// });
 
 Route::prefix('admin')->name('admin.')->group(function () {
+
     Route::middleware('admin.guest')->group(function () {
         Route::get('/superadmin', [AuthController::class, 'superadmin'])->name('superadmin');
         Route::get('/', [AuthController::class, 'index'])->name('login');
@@ -41,10 +46,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::post('/registration', [AuthController::class, 'registrationdata'])->name('registrationdata');
     });
+    // Route::middleware('admin.auth')->group(function () {
+    //     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+    // });
     Route::middleware('admin.auth')->group(function () {
 
-        //Admin Section
-
+        //Admin Section ===============================================
         Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
         Route::get('/admindashboard', [AdminController::class, 'admin'])->name('admindashboard');
         Route::get('/adminprofile', [AdminController::class, 'adminprofile'])->name('adminprofile');
@@ -54,23 +61,43 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/adminprofile', [AdminController::class, 'adminprofile'])->name('updateProfileImg');
 
         Route::patch('/adminprofile', [AdminController::class, 'adminprofile'])->name('updateProfile');
-
+        // change status
         Route::post('/changeStatus', [changeStatusController::class, 'changeStatus'])->name('changeStatus');
 
-        Route::get('/holidays', [HolidaysController::class, 'holidays'])->name('holidays');
-        Route::get('/employee', [EmployeeController::class, 'employee'])->name('employee');
-        Route::get('/leave', [LeaveController::class, 'leave'])->name('leave');
-        Route::get('/attendance', [AttendanceController::class, 'attendance'])->name('attendance');
-        Route::get('/role', [RoleController::class, 'role'])->name('role');
-        Route::get('/department', [DepartmentController::class, 'department'])->name('department');
 
+        // holidays section ==============================================
+
+        Route::get('/holidays', [HolidaysController::class, 'index'])->name('holidays');
+
+        // employee section ==============================================
+        Route::get('/employee', [EmployeeController::class, 'index'])->name('employee');
+
+        // leave section ============================================== 
+
+        Route::get('/leave', [LeaveController::class, 'index'])->name('leave');
+
+        // attendance section ============================================
+        Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance');
+
+        // role section =================================================
+        Route::get('/role', [RoleController::class, 'index'])->name('role');
+
+        // department section =============================================
+        Route::get('/department', [DepartmentController::class, 'index'])->name('department');
+
+        // company section ================================================
+        Route::get('/company', [CompanyController::class, 'index'])->name('company');
+
+        // designation section ============================================
+        Route::get('/designation', [DesignationController::class, 'index'])->name('designation');
+
+        // change password =================================================
         Route::get('/changePassword', [AdminController::class, 'changePasswordShow'])->name('changePassword');
-
         Route::put('/changePassword', [AdminController::class, 'changePassword'])->name('changePassworddata');
 
         Route::delete('/deleteData', [deleteController::class, 'destroy'])->name('DeleteData');
 
-        //update position
+        //update position ===========================================
 
         Route::post('/updatePositions', [UpdatePositionController::class, 'index'])->name('updatePositions');
     });

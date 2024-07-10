@@ -6,7 +6,14 @@ use Illuminate\Http\Request;
 
 class HolidaysController extends Controller
 {
-    public function holidays(){
+    /**
+     * A description of the entire PHP function.
+     *
+     * @param datatype $paramname description
+     * @throws Some_Exception_Class description of exception
+     * @return Some_Return_Value
+     */
+    public function index(){
         return view('admin.holidays');
     }
 }

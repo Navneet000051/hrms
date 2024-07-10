@@ -11,9 +11,8 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function role()
+    public function index()
     {
-        // Return the view for the role page
         return view('admin.role');
     }
 }

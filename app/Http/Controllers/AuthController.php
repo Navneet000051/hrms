@@ -18,7 +18,7 @@ class AuthController extends Controller
     }
     public function superadmin()
     {
-        return view('admin.layout.login');
+        return view('admin.layout.superadminlogin');
     }
     
     public function login(Request $request)
@@ -47,10 +47,12 @@ class AuthController extends Controller
                         return redirect()->route('admin.dashboard');
                      
                 } else {
-                    return redirect()->route($uriName.'superadmin')->withInput($request->only('email'))->with('error', 'Please enter correct password');
+                    // dd(2);
+                    return redirect()->route($uriName.'.superadmin')->withInput($request->only('email'))->with('error', 'Please enter correct password');
+                    
                 } 
             }
-            else if($user->role_id == 2 && $currentRoute=='admin.logindata'){
+            else if($user->role_id != 1 && $currentRoute=='admin.logindata'){
                 // dd(1);
                 if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
                     Session::flash('success', 'Login successfully.');
