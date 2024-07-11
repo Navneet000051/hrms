@@ -396,6 +396,7 @@
 
 @endsection
 @section('externaljs')
+
 <script>
     $(document).ready(function() {
         $('#employee_List')

@@ -113,4 +113,7 @@
             </div>
         </div>
         @endsection
+        @section('externaljs')
+        <script src="{{asset('assets/js/pages/file/filemanager.js')}}"></script>
+        @endsection
      

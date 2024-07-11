@@ -16,17 +16,17 @@ $currentRoute = Route::currentRouteName();
     <meta content="CMS" name="author" />
     <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- Include CSRF token meta tag -->
     <!-- App favicon -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://bfcsofttech.com/assets/img/logo.webp" type="image/x-icon">
     <link rel="stylesheet" href="{{asset('assets/css/datepicker.min.css')}}">
-
-    <link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/nouislider.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/tagsinput.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugin/bootstrap-colorpicker/css/bootstrap-colorpicker.css')}}">
+
+    <link rel="stylesheet" href="{{asset('assets/css/dataTables.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/dropify.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/css1.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/dataTables.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/toastr.min.css')}}">
 </head>
 
@@ -376,27 +376,22 @@ $currentRoute = Route::currentRouteName();
 
     <script src="{{asset('assets/bundles/libscripts.bundle.js')}}"></script>
     <script src="{{asset('assets/bundles/datepicker.bundle.js')}}"></script>
-    <script src="{{asset('assets/bundles/select2.bundle.js')}}"></script>
     <script src="{{asset('assets/bundles/nouislider.bundle.js')}}"></script>
     <script src="{{asset('assets/bundles/tagsinput.bundle.js')}}"></script>
+    <script src="{{asset('assets/bundles/select2.bundle.js')}}"></script>
     <script src="{{asset('assets/plugin/bootstrap-colorpicker/js/bootstrap-colorpicker.js')}}"></script>
     <script src="{{asset('assets/bundles/inputmask.bundle.js')}}"></script>
     <script src="{{asset('assets/bundles/maskedinput.bundle.js')}}"></script>
     <script src="{{asset('assets/bundles/dropify.bundle.js')}}"></script>
     <script src="{{asset('assets/bundles/jqueryvalidate.bundle.js')}}"></script>
     <script src="{{asset('assets/bundles/jquerysteps.bundle.js')}}"></script>
-
-    <script src="{{asset('assets/bundles/mainscripts.bundle.js')}}"></script>
-
-
-    <script src="{{asset('assets/js/pages/forms/advanced-form-elements.js')}}"></script>
     <script src="{{asset('assets/bundles/dataTables.bundle.js')}}"></script>
 
-
+    <script src="{{asset('assets/bundles/mainscripts.bundle.js')}}"></script>
+    <script src="{{asset('assets/js/pages/forms/advanced-form-elements.js')}}"></script>
     <!-- page js file -->
-    <script src="{{asset('assets/js/pages/index.js')}}"></script>
-    <script src="{{asset('assets/js/pages/file/filemanager.js')}}"></script>
-    <script src="{{asset('assets/js/pages/forms/form-wizard.js')}}"></script>
+
+  <script src="{{asset('assets/js/pages/forms/form-wizard.js')}}"></script>
     <script src="{{asset('assets/js/pages/forms/dropify.js')}}"></script>
     <script src="{{asset('assets/bundles/toastr.bundle.js')}}"></script>
 

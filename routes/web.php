@@ -82,11 +82,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // role section =================================================
         Route::get('/role', [RoleController::class, 'index'])->name('role');
 
+        Route::get('/addrole', [RoleController::class, 'index'])->name('addrole');
+
         // department section =============================================
         Route::get('/department', [DepartmentController::class, 'index'])->name('department');
 
         // company section ================================================
         Route::get('/company', [CompanyController::class, 'index'])->name('company');
+        Route::post('/addcompany', [CompanyController::class, 'save'])->name('addcompany');
 
         // designation section ============================================
         Route::get('/designation', [DesignationController::class, 'index'])->name('designation');

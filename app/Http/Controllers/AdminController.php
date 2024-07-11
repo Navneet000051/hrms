@@ -34,69 +34,7 @@ class AdminController extends Controller
             return redirect()->route('admin.login');
         }
     }
-    // public function adminprofile(Request $request)
-    // {
-    //     // dd(1);
-    //     $output['res'] = 'error';
-    //     if (!empty($request->id)) {
-    //         $request->validate([
-    //             'name' => 'required',
-    //             'mobile' => 'required|numeric|digits:10',
-    //             'email' => 'required|email',
-    //             'address' => 'required',
-    //         ]);
 
-    //         $user = User::find($request->id);
-
-    //         if (!$user) {
-
-    //             $output['res'] = 'error';
-    //             $output['msg'] = 'User not found';
-    //         }
-
-    //         // Update user details
-    //         $user->name = $request->input('name');
-    //         $user->mobile = $request->input('mobile');
-    //         $user->email = $request->input('email');
-    //         $user->address = $request->input('address');
-
-    //         if ($user->save()) {
-    //             $output['res'] = 'success';
-    //             $output['msg'] = 'Profile updated successfully';
-    //             $output['redirect'] =  route('admin.adminprofile');
-    //         } else {
-
-    //             $output['res'] = 'error';
-    //             $output['msg'] = 'Failed to update profile';
-    //         }
-    //         echo json_encode([$output]);
-    //     } elseif (!empty($request->icon)) {
-    //         $request->validate([
-    //             'icon' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-    //         ]);
-
-    //         $user = auth()->user();
-
-    //         if ($request->hasFile('icon')) {
-    //             // Delete the old image if it exists
-    //             if ($user->icon) {
-    //                 Storage::disk('public')->delete($user->icon);
-    //             }
-    //             $imagePath = $request->file('icon')->store('admin', 'public');
-    //             $user->icon = $imagePath;
-
-    //             if ($user->save()) {
-    //                 Session::flash('success', 'Image updated successfully');
-    //             } else {
-    //                 Session::flash('error', 'Image not updated ');
-    //             }
-    //         } else {
-    //             Session::flash('success', 'No file provided in the request.');
-    //         }
-    //     }
-
-    //     return view('admin.profile');
-    // }
 
     public function adminprofile(Request $request)
     {

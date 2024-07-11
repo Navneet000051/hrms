@@ -1,6 +1,14 @@
 @extends('admin.layout.master')
 @section('content')
+<style>
+    .dropify-wrapper {
+        height: 120px !important;
+    }
 
+    .profile .dropify-wrapper {
+        height: 200px !important;
+    }
+</style>
 <div id="main-content">
     <div class="container-fluid">
 
@@ -8,11 +16,7 @@
             <div class="row g-3">
                 <div class="col-md-6 col-sm-12">
                     <h2 class="m-0 fs-5"><a href="javascript:void(0);" class="btn btn-sm btn-link ps-0 btn-toggle-fullwidth"><i class="fa fa-arrow-left"></i></a>Company List</h2>
-                    {{-- <ul class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Lucid</a></li>
-                        <li class="breadcrumb-item">Company</li>
-                        <li class="breadcrumb-item active">Company List</li>
-                    </ul> --}}
+                    
                 </div>
                 <div class="col-md-6 col-sm-12 text-md-end">
                     <div class="d-inline-flex text-start">
@@ -44,7 +48,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h6 class="card-title">Employee List</h6>
+                        <h6 class="card-title">Company List</h6>
                         <ul class="header-dropdown">
                             <li><button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#AddDepartments">Add New</button></li>
                         </ul>
@@ -53,69 +57,55 @@
                         <table id="emp_role" class="table table-hover mb-0">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Department Name</th>
-                                    <th>Department Head</th>
-                                    <th>Total Employee</th>
+                                    <th>Sr. No.</th>
+                                    <th>Company Name</th>
+                                    <th>Address</th>
+                                    <th>Logo</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                               
                                 <tr>
                                     <td>01</td>
-                                    <td>
-                                        <h6 class="mb-0">Web Development</h6>
-                                    </td>
-                                    <td>John Smith</td>
-                                    <td>305</td>
-                                    <td>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa fa-edit"></i></button>
-                                        <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash-o"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>02</td>
-                                    <td>
-                                        <h6 class="mb-0">Marketing</h6>
-                                    </td>
-                                    <td>Maryam Amiri</td>
-                                    <td>26</td>
-                                    <td>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa fa-edit"></i></button>
-                                        <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash-o"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>03</td>
-                                    <td>
-                                        <h6 class="mb-0">App Development</h6>
-                                    </td>
-                                    <td>Frank Camly</td>
-                                    <td>38</td>
-                                    <td>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa fa-edit"></i></button>
-                                        <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash-o"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>04</td>
-                                    <td>
-                                        <h6 class="mb-0">Support</h6>
-                                    </td>
-                                    <td>Gary Camara</td>
-                                    <td>45</td>
-                                    <td>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa fa-edit"></i></button>
-                                        <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash-o"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>05</td>
                                     <td>
                                         <h6 class="mb-0">Accounts</h6>
                                     </td>
                                     <td>Fidel Tonn</td>
                                     <td>8</td>
+                                    <td>
+                                                <div class="dropdown">
+                                                <button type="button" class="btn btn-simple btn-sm btn-success " data-target="approved">Approved</button><button class="btn btn-link dropdown-toggle after-none" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-angle-down"></i></button>
+                                                    <ul class="dropdown-menu border-0 shadow p-3">
+                                                        <li><a class="dropdown-item py-2 rounded" href="#">Action</a></li>
+                                                        <li><a class="dropdown-item py-2 rounded" href="#">Another action</a></li>
+                                                        <li><a class="dropdown-item py-2 rounded" href="#">Something else here</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa fa-edit"></i></button>
+                                        <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash-o"></i></button>
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <td>02</td>
+                                    <td>
+                                        <h6 class="mb-0">Accounts</h6>
+                                    </td>
+                                    <td>Fidel Tonn</td>
+                                    <td>8</td>
+                                    <td>
+                                                <div class="dropdown">
+                                                <button type="button" class="btn mx-2 btn-simple btn-sm btn-danger btn-filter" data-target="blocked">Blocked</button><button class="btn btn-link dropdown-toggle after-none" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-h"></i></button>
+                                                    <ul class="dropdown-menu border-0 shadow p-3">
+                                                        <li><a class="dropdown-item py-2 rounded" href="#">Action</a></li>
+                                                        <li><a class="dropdown-item py-2 rounded" href="#">Another action</a></li>
+                                                        <li><a class="dropdown-item py-2 rounded" href="#">Something else here</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
                                     <td>
                                         <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa fa-edit"></i></button>
                                         <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash-o"></i></button>
@@ -131,52 +121,73 @@
     </div>
 </div>
 
-    <!-- Add model  Size -->
-    <div class="modal fade" id="AddDepartments" tabindex="-1" aria-labelledby="AddDepartments" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h6 class="title" id="defaultModalLabel">Add Role</h6>
-                </div>
+<!-- Add model  Size -->
+<div class="modal fade" id="AddDepartments" tabindex="-1" aria-labelledby="AddDepartments" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="title" id="defaultModalLabel">Add Company</h6>
+            </div>
+
+            <form action="{{ route('admin.addcompany') }}" method="post" enctype="multipart/form-data">
+                @csrf
                 <div class="modal-body">
                     <div class="row g-2">
                         <div class="col-12">
-                            <input type="text" class="form-control" placeholder="Role Name">
+                            <label class="form-label">Company Name <small class="text-danger">*</small></label>
+                            <input type="text" class="form-control" name="company_name" placeholder="Company Name">
+                            @error('company_name')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
-
+                        <div class="col-12">
+                            <label class="form-label">Company Address <small class="text-danger">*</small></label>
+                            <textarea name="address" cols="30" rows="3" placeholder="Address *" class="form-control no-resize" required=""></textarea>
+                            @error('address')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Company Logo <small class="text-danger">*</small></label>
+                            <input type="file" id="dropify-event" class="dropify" data-default-file="" name="logo">
+                            @error('logo')
+                            <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Add</button>
+                    <button type="submit" value="submit" class="btn btn-primary">Add</button>
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
-    <!---Delet Model--->
-    <div class="modal fade" id="ModalDelete" tabindex="-1" aria-labelledby="ModalDelete" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body text-center pt-4">
-                    <i class="fa fa-warning fa-4x text-warning"></i>
-                    <p class="fs-3 my-3">Are you sure?</p>
-                    <p class="mb-4">You will not be able to recover this imaginary file!</p>
-                    <div class="mb-3">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Yes, delete it!</button>
-                    </div>
+</div>
+<!---Delet Model--->
+<div class="modal fade" id="ModalDelete" tabindex="-1" aria-labelledby="ModalDelete" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center pt-4">
+                <i class="fa fa-warning fa-4x text-warning"></i>
+                <p class="fs-3 my-3">Are you sure?</p>
+                <p class="mb-4">You will not be able to recover this imaginary file!</p>
+                <div class="mb-3">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Yes, delete it!</button>
                 </div>
             </div>
         </div>
     </div>
+</div>
 @endsection
 @section('externaljs')
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#emp_role')
-        .dataTable({
-            responsive: true,
-        });
+            .dataTable({
+                responsive: true,
+            });
     });
 </script>
 @endsection

@@ -221,35 +221,35 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td><img src="assets/images/xs/avatar1.jpg" class="avatar rounded-circle" alt=""></td>
+                                                <td><img src="{{ asset('assets/images/xs/avatar1.jpg') }}" class="avatar rounded-circle" alt=""></td>
                                                 <td>Marshall Nichols</td>
                                                 <td><span>UI UX Designer</span></td>
                                                 <td><span class="badge bg-success">Good</span></td>
                                                 <td><span id="sparkbar_uideveloper"></span></td>
                                             </tr>
                                             <tr>
-                                                <td><img src="assets/images/xs/avatar2.jpg" class="avatar rounded-circle" alt=""></td>
+                                                <td><img src="{{ asset('assets/images/xs/avatar2.jpg') }}" class="avatar rounded-circle" alt=""></td>
                                                 <td>Susie Willis</td>
                                                 <td><span>Designer</span></td>
                                                 <td><span class="badge bg-warning">Average</span></td>
                                                 <td><span id="sparkbar_designer1"></span></td>
                                             </tr>
                                             <tr>
-                                                <td><img src="assets/images/xs/avatar3.jpg" class="avatar rounded-circle" alt=""></td>
+                                                <td><img src="{{ asset('assets/images/xs/avatar3.jpg') }}" class="avatar rounded-circle" alt=""></td>
                                                 <td>Francisco Vasquez</td>
                                                 <td><span>Team Leader</span></td>
                                                 <td><span class="badge bg-primary">Excellent</span></td>
                                                 <td><span id="sparkbar_leader"></span></td>
                                             </tr>
                                             <tr>
-                                                <td><img src="assets/images/xs/avatar4.jpg" class="avatar rounded-circle" alt=""></td>
+                                                <td><img src="{{ asset('assets/images/xs/avatar4.jpg') }}" class="avatar rounded-circle" alt=""></td>
                                                 <td>Erin Gonzales</td>
                                                 <td><span>Android Developer</span></td>
                                                 <td><span class="badge bg-danger">Weak</span></td>
                                                 <td><span id="sparkbar_developer"></span></td>
                                             </tr>
                                             <tr>
-                                                <td><img src="assets/images/xs/avatar5.jpg" class="avatar rounded-circle" alt=""></td>
+                                                <td><img src="{{ asset('assets/images/xs/avatar5.jpg') }}" class="avatar rounded-circle" alt=""></td>
                                                 <td>Ava Alexander</td>
                                                 <td><span>UI UX Designer</span></td>
                                                 <td><span class="badge bg-success">Good</span></td>
@@ -285,3 +285,5 @@
         </div>
         @endsection
         @section('externaljs')
+        <script src="{{asset('assets/js/pages/index.js')}}"></script>
+        @endsection
