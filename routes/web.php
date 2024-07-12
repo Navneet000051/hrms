@@ -89,6 +89,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // company section ================================================
         Route::get('/company', [CompanyController::class, 'index'])->name('company');
+        Route::get('/editcompany', [CompanyController::class, 'index'])->name('editcompany');
         Route::post('/addcompany', [CompanyController::class, 'save'])->name('addcompany');
 
         // designation section ============================================

@@ -67,7 +67,16 @@
                                         <h6 class="mb-0">Web Development</h6>
                                     </td>
                                     <td>John Smith</td>
-                                    <td>305</td>
+                                    <td class="dropdown-toggle after-none" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <div class="dropdown">
+                                                <button type="button" class="btn mx-2 btn-simple btn-sm btn-danger btn-filter" data-target="blocked">Blocked</button><button class="btn btn-link dropdown-toggle after-none" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-h"></i></button>
+                                                    <ul class="dropdown-menu border-0 shadow p-3">
+                                                        <li><a class="dropdown-item py-2 rounded" href="#">Action</a></li>
+                                                        <li><a class="dropdown-item py-2 rounded" href="#">Another action</a></li>
+                                                        <li><a class="dropdown-item py-2 rounded" href="#">Something else here</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
                                     <td>
                                         <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa fa-edit"></i></button>
                                         <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash-o"></i></button>
@@ -78,8 +87,18 @@
                                     <td>
                                         <h6 class="mb-0">Marketing</h6>
                                     </td>
-                                    <td>Maryam Amiri</td>
-                                    <td>26</td>
+                                    <td>Maryam Amiri1</td>
+                                     <td>
+                                                <div class="dropdown">
+                                                <button type="button" class="btn btn-simple btn-sm btn-success " data-target="approved">Approved</button><button class="btn btn-link dropdown-toggle after-none" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-angle-down"></i></button>
+                                                    <ul class="dropdown-menu border-0 shadow p-3">
+                                                        <li><a class="dropdown-item py-2 rounded" href="#">Action</a></li>
+                                                        <li><a class="dropdown-item py-2 rounded" href="#">Another action</a></li>
+                                                        <li><a class="dropdown-item py-2 rounded" href="#">Something else here</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                   
                                     <td>
                                         <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa fa-edit"></i></button>
                                         <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash-o"></i></button>
@@ -91,7 +110,15 @@
                                         <h6 class="mb-0">App Development</h6>
                                     </td>
                                     <td>Frank Camly</td>
-                                    <td>38</td>
+                                    <td><div class='dropdown d-inline-block user-dropdown'>
+                            <button type='button' class='btn text-dark waves-effect' id='page-header-user-dropdown' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                <div class='badge bg-success-subtle text-success font-size-12'><i class='fa fa-spin fa-spinner'></i>Active</div>
+                                <i class='mdi mdi-chevron-down d-xl-inline-block'></i>
+                            </button>
+                            <div class='dropdown-menu dropdown-menu-end'>
+                                <a class='dropdown-item' style='cursor:pointer;' > Inactive</a> 
+                            </div>
+                        </div></td>
                                     <td>
                                         <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa fa-edit"></i></button>
                                         <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash-o"></i></button>

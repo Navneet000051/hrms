@@ -8,6 +8,27 @@
     .profile .dropify-wrapper {
         height: 200px !important;
     }
+    .btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show {
+    color: var(--bs-btn-active-color);
+    background-color: var(--bs-btn-active-bg);
+    border-color: #fff;
+}
+.bg-success-subtle {
+    background-color: #d2f1e8 !important;
+}
+.text-success {
+    --bs-text-opacity: 1;
+    color: rgba(28,187,140,1) !important;
+}
+.badge {
+    font-weight: 400;
+    font-size: 12px !important;
+}
+.dropdown-item:hover, .dropdown-item:focus, .dropdown-item.active {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 50rem;
+}
 </style>
 <div id="main-content">
     <div class="container-fluid">
@@ -54,6 +75,19 @@
                         </ul>
                     </div>
                     <div class="card-body">
+                        <table class="table table-bordered data-table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th width="100px">Status</th>
+                <th width="100px">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
                         <table id="emp_role" class="table table-hover mb-0">
                             <thead>
                                 <tr>
@@ -66,51 +100,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                               
-                                <tr>
-                                    <td>01</td>
-                                    <td>
-                                        <h6 class="mb-0">Accounts</h6>
-                                    </td>
-                                    <td>Fidel Tonn</td>
-                                    <td>8</td>
-                                    <td>
-                                                <div class="dropdown">
-                                                <button type="button" class="btn btn-simple btn-sm btn-success " data-target="approved">Approved</button><button class="btn btn-link dropdown-toggle after-none" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-angle-down"></i></button>
-                                                    <ul class="dropdown-menu border-0 shadow p-3">
-                                                        <li><a class="dropdown-item py-2 rounded" href="#">Action</a></li>
-                                                        <li><a class="dropdown-item py-2 rounded" href="#">Another action</a></li>
-                                                        <li><a class="dropdown-item py-2 rounded" href="#">Something else here</a></li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                    <td>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa fa-edit"></i></button>
-                                        <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash-o"></i></button>
-                                    </td>
-                                </tr>  
-                                <tr>
-                                    <td>02</td>
-                                    <td>
-                                        <h6 class="mb-0">Accounts</h6>
-                                    </td>
-                                    <td>Fidel Tonn</td>
-                                    <td>8</td>
-                                    <td>
-                                                <div class="dropdown">
-                                                <button type="button" class="btn mx-2 btn-simple btn-sm btn-danger btn-filter" data-target="blocked">Blocked</button><button class="btn btn-link dropdown-toggle after-none" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-h"></i></button>
-                                                    <ul class="dropdown-menu border-0 shadow p-3">
-                                                        <li><a class="dropdown-item py-2 rounded" href="#">Action</a></li>
-                                                        <li><a class="dropdown-item py-2 rounded" href="#">Another action</a></li>
-                                                        <li><a class="dropdown-item py-2 rounded" href="#">Something else here</a></li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                    <td>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa fa-edit"></i></button>
-                                        <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash-o"></i></button>
-                                    </td>
-                                </tr>
+                      
                             </tbody>
                         </table>
                     </div>
@@ -189,5 +179,24 @@
                 responsive: true,
             });
     });
+</script>
+     
+<script type="text/javascript">
+  $(function () {
+      
+    var table = $('.data-table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{ route('admin.company') }}",
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'company_name', name: 'company_name'},
+            {data: 'address', name: 'address'},
+            {data: 'status', name: 'status'},
+            {data: 'action', name: 'action', orderable: false, searchable: false},
+        ]
+    });
+      
+  });
 </script>
 @endsection

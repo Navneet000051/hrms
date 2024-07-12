@@ -28,6 +28,16 @@ $currentRoute = Route::currentRouteName();
     <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/css1.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/toastr.min.css')}}">
+    <style>
+        .table tr th {
+    border-color: #fff;
+    background-color: #000;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 12px;
+    border-width: 0 0 0  1px;
+}
+    </style>
 </head>
 
 <body>
@@ -217,7 +227,7 @@ $currentRoute = Route::currentRouteName();
                                 </li>
 
                                 <li class="{{ in_array($currentRoute, ['admin.role', 'admin.department', 'admin.company', 'admin.designation'   ]) ? 'active mm-active' : '' }}">
-                                    <a href="#Company" class="has-arrow"><i class="fa fa-building-o"></i><span>Company</span></a>
+                                    <a href="#Company" class="has-arrow"><i class="fa fa-building-o"></i><span>Company Details</span></a>
                                     <ul class="list-unstyled {{ in_array($currentRoute, ['admin.role', 'admin.department', 'admin.company', 'admin.designation']) ? 'mm-show' : '' }}">
                                         <li class="{{ $currentRoute == 'admin.company' ? 'active' : '' }}"><a href="{{ route('admin.company') }}">Company</a></li>
                                         <li class="{{ $currentRoute == 'admin.department' ? 'active' : '' }}"><a href="{{ route('admin.department') }}">Departments</a></li>

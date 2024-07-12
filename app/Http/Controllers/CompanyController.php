@@ -3,15 +3,73 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\Facades\DataTables;
 
 class CompanyController extends Controller
 {
-    public function index(){
-        return view('admin.company');
+ 
+    public function index(Request $request, $id = '')
+{
+    $tableName = (new Company)->getTable();
+    $data['tablename'] = $tableName;
+
+    if ($id != '') {
+        $id = decrypt($id);
+        $data['editcompany'] = Company::where('id', $id)->first();
+    } else {
+        $data['editcompany'] = '';
     }
+   
+    $data['title'] = 'company';
+    $data['company'] = Company::where('status', 1)->get();
+  
+    if ($request->ajax()) {
+        $data = Company::orderBy('position_by', 'asc')->get();
+        return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('status', function ($row) use ($tableName) {
+                    if ($row->status == 1) {
+                        return "<div class='dropdown d-inline-block user-dropdown'>
+                            <button type='button' class='btn text-dark waves-effect' id='page-header-user-dropdown' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                <div class='badge bg-success-subtle text-success font-size-12'><i class='fa fa-spin fa-spinner' style='display:none' id='PendingSpin{$row->id}'></i>Active</div>
+                                <i class='fa fa-angle-down'></i>
+                            </button>
+                            <div class='dropdown-menu dropdown-menu-end p-2'>
+                                <a class='dropdown-item' style='cursor:pointer;' onclick=\"changeStatus('id', '{$row->id}', 'status', '0', '{$tableName}')\">Inactive</a> 
+                            </div>
+
+
+                        </div>";
+                    } else {
+                        return "<div class='dropdown d-inline-block user-dropdown'>
+                            <button type='button' class='btn text-dark waves-effect' id='page-header-user-dropdown' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                                <span class='d-xl-inline-block ms-1'>
+                                    <div class='badge bg-danger-subtle text-danger font-size-12'><i class='fa fa-spin fa-spinner' style='display:none' id='publicationSpin{$row->id}'></i>Inactive</div>
+                                </span>
+                                <i class='fa fa-angle-down'></i>
+                            </button>
+                            <div class='dropdown-menu dropdown-menu-end'>
+                                <a class='dropdown-item' style='cursor:pointer;' onclick=\"changeStatus('id', '{$row->id}', 'status', '1', '{$tableName}')\">Active</a>
+                            </div>
+                        </div>";
+                    }
+                })
+                ->addColumn('action', function($row){
+                        $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+                        return $btn;
+                })
+                ->rawColumns(['status', 'action'])
+                ->make(true);
+    }
+
+    return view('admin.company', $data);
+}
+
 
     public function save(Request $request){ 
     // dd($request->all());
