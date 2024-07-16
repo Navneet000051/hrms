@@ -59,11 +59,22 @@ class CompanyController extends Controller
                         </div>";
                     }
                 })
-                ->addColumn('action', function($row){
-                        $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
-                        return $btn;
+                ->addColumn('action', function ($row) use ($tableName) {
+                    $encryptedId = encrypt($row->id);
+                        $actionBtn = '<a href="' . route('admin.editcompany', ['id' => $encryptedId]) . '"class="btn btn-sm btn-outline-secondary"><i class="fa fa-edit"></i></a>
+                                        <a href="javascript:void(0)" onclick="deleteData(\'id\', ' . $row->id . ', \'' . $tableName . '\')" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash-o"></i></a>';
+                        return $actionBtn;
                 })
-                ->rawColumns(['status', 'action'])
+                ->addColumn('logo', function ($row) {
+                    $actionBtn = '	<a href="' . asset("storage/{$row->logo}") . '" target="_blank"><img src="' . asset("storage/{$row->logo}") . '" width="80"></a>';
+                    return $actionBtn;
+                })
+                ->setRowAttr([
+                    'data-id' => function ($row) {
+                        return $row->id;
+                    },
+                ])
+                ->rawColumns(['status', 'action','logo'])
                 ->make(true);
     }
 

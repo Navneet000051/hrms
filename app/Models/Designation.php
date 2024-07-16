@@ -19,6 +19,7 @@ class Designation extends Model
         'department_id',
         'name',
         'status',
+        'position_by',
     ];
 
     /**

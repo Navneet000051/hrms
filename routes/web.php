@@ -84,13 +84,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('/addrole', [RoleController::class, 'index'])->name('addrole');
 
-        // department section =============================================
-        Route::get('/department', [DepartmentController::class, 'index'])->name('department');
 
         // company section ================================================
         Route::get('/company', [CompanyController::class, 'index'])->name('company');
         Route::get('/editcompany', [CompanyController::class, 'index'])->name('editcompany');
         Route::post('/addcompany', [CompanyController::class, 'save'])->name('addcompany');
+
+        // department section =============================================
+        Route::get('/department', [DepartmentController::class, 'index'])->name('department');
+        Route::post('/adddepartment', [DepartmentController::class, 'save'])->name('adddepartment');
+        Route::get('/editdepartment', [DepartmentController::class, 'index'])->name('editdepartment');
+
 
         // designation section ============================================
         Route::get('/designation', [DesignationController::class, 'index'])->name('designation');

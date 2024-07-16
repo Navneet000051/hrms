@@ -8,27 +8,38 @@
     .profile .dropify-wrapper {
         height: 200px !important;
     }
-    .btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show {
-    color: var(--bs-btn-active-color);
-    background-color: var(--bs-btn-active-bg);
-    border-color: #fff;
-}
-.bg-success-subtle {
-    background-color: #d2f1e8 !important;
-}
-.text-success {
-    --bs-text-opacity: 1;
-    color: rgba(28,187,140,1) !important;
-}
-.badge {
-    font-weight: 400;
-    font-size: 12px !important;
-}
-.dropdown-item:hover, .dropdown-item:focus, .dropdown-item.active {
-    background-color: var(--primary-color);
-    color: #fff;
-    border-radius: 50rem;
-}
+
+    .btn-check:checked+.btn,
+    :not(.btn-check)+.btn:active,
+    .btn:first-child:active,
+    .btn.active,
+    .btn.show {
+        color: var(--bs-btn-active-color);
+        background-color: var(--bs-btn-active-bg);
+        border-color: #fff;
+    }
+
+    .bg-success-subtle {
+        background-color: #d2f1e8 !important;
+    }
+
+    .text-success {
+        --bs-text-opacity: 1;
+        color: rgba(28, 187, 140, 1) !important;
+    }
+
+    .badge {
+        font-weight: 400;
+        font-size: 12px !important;
+    }
+
+    .dropdown-item:hover,
+    .dropdown-item:focus,
+    .dropdown-item.active {
+        background-color: var(--primary-color);
+        color: #fff;
+        border-radius: 50rem;
+    }
 </style>
 <div id="main-content">
     <div class="container-fluid">
@@ -37,7 +48,7 @@
             <div class="row g-3">
                 <div class="col-md-6 col-sm-12">
                     <h2 class="m-0 fs-5"><a href="javascript:void(0);" class="btn btn-sm btn-link ps-0 btn-toggle-fullwidth"><i class="fa fa-arrow-left"></i></a>Company List</h2>
-                    
+
                 </div>
                 <div class="col-md-6 col-sm-12 text-md-end">
                     <div class="d-inline-flex text-start">
@@ -71,24 +82,27 @@
                     <div class="card-header">
                         <h6 class="card-title">Company List</h6>
                         <ul class="header-dropdown">
-                            <li><button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#AddDepartments">Add New</button></li>
+                            <li><button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#EmployeeModel">Add New</button></li>
                         </ul>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered data-table">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th width="100px">Status</th>
-                <th width="100px">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-                        <table id="emp_role" class="table table-hover mb-0">
+                        <div class="table-responsive">
+                            <table class="table table-bordered data-table dt-responsive nowrap" id="yajradb">
+                                <thead id="sortable">
+                                    <tr>
+                                        <th>Sr. No.</th>
+                                        <th>Company Name</th>
+                                        <th>Logo</th>
+                                        <th>Address</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- <table id="emp_role" class="table table-hover mb-0">
                             <thead>
                                 <tr>
                                     <th>Sr. No.</th>
@@ -102,7 +116,7 @@
                             <tbody>
                       
                             </tbody>
-                        </table>
+                        </table> -->
                     </div>
                 </div>
             </div>
@@ -112,7 +126,7 @@
 </div>
 
 <!-- Add model  Size -->
-<div class="modal fade" id="AddDepartments" tabindex="-1" aria-labelledby="AddDepartments" aria-hidden="true">
+<div class="modal fade" id="EmployeeModel" tabindex="-1" aria-labelledby="EmployeeModel" aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -121,6 +135,7 @@
 
             <form action="{{ route('admin.addcompany') }}" method="post" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="id" value="">
                 <div class="modal-body">
                     <div class="row g-2">
                         <div class="col-12">
@@ -147,10 +162,11 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" value="submit" class="btn btn-primary">Add</button>
+                    <button type="submit" value="submit" class="btn btn-primary">Save</button>
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </form>
+
         </div>
     </div>
 </div>
@@ -180,23 +196,71 @@
             });
     });
 </script>
-     
+<script>
+    function openEditModal(encryptedId) {
+        $.ajax({
+            url: '{{ route("admin.editcompany", ["id" => "ENCRYPTED_ID"]) }}'.replace('ENCRYPTED_ID', encryptedId),
+            type: 'GET',
+            success: function(response) {
+                // Assuming the response contains the company data
+                if (response.success) {
+                    // Populate the modal fields with the response data
+                    $('input[name="company_name"]').val(response.data.company_name);
+                    $('textarea[name="address"]').val(response.data.address);
+                    $('input[name="id"]').val(response.data.id); // Set the hidden ID field
+                    
+                    // Set the logo preview
+                    var logoUrl = '{{ asset("storage/") }}' + '/' + response.data.logo;
+                    $('#dropify-event').attr('data-default-file', logoUrl).dropify();
+
+                    // Open the modal
+                    $('#EmployeeModel').modal('show');
+                }
+            },
+            error: function(xhr) {
+                console.log(xhr.responseText);
+            }
+        });
+    }
+</script>
+
 <script type="text/javascript">
-  $(function () {
-      
-    var table = $('.data-table').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax: "{{ route('admin.company') }}",
-        columns: [
-            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: 'company_name', name: 'company_name'},
-            {data: 'address', name: 'address'},
-            {data: 'status', name: 'status'},
-            {data: 'action', name: 'action', orderable: false, searchable: false},
-        ]
+    $(function() {
+
+        var table = $('#yajradb').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('admin.company') }}",
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex'
+                },
+                {
+                    data: 'company_name',
+                    name: 'company_name'
+                },
+
+                {
+                    data: 'logo',
+                    name: 'logo'
+                },
+                {
+                    data: 'address',
+                    name: 'address'
+                },
+                {
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
+                },
+            ]
+        });
+
     });
-      
-  });
 </script>
 @endsection

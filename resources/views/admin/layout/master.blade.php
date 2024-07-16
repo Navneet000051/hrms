@@ -404,9 +404,84 @@ $currentRoute = Route::currentRouteName();
   <script src="{{asset('assets/js/pages/forms/form-wizard.js')}}"></script>
     <script src="{{asset('assets/js/pages/forms/dropify.js')}}"></script>
     <script src="{{asset('assets/bundles/toastr.bundle.js')}}"></script>
+      <!-- Ajax Request -->
+      <script>
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            }
+        });
+    </script>
+        <!-- jQuery UI Sortable -->
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!---Make the table rows sortable -->
+    
+    @isset($tablename)
+    <script>
+        $(document).ready(function() {
+            // Make the table rows sortable
+            $("#yajradb tbody").sortable({
+                axis: "y", // Allow dragging only vertically
+                cursor: "move", // Set cursor style to indicate draggable elements
+                update: function(event, ui) {
+                    // Get the new order of the rows
+                    var newOrder = $(this).sortable('toArray', {
+                        attribute: 'data-id'
+                    });
+
+                    // Perform AJAX call to update the database
+                    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+                    var tablename = "{{ $tablename }}";
+                    $.ajax({
+                        url: "{{ route('admin.updatePositions') }}",
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': csrfToken
+                        },
+                        data: {
+                            newOrder: newOrder,
+                            tablename: tablename
+                        },
+                        success: function(response) {
+                            console.log(response);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr.responseText);
+                        }
+                    });
+                }
+            }).disableSelection(); // Prevent text selection while dragging
+        });
+    </script>
+@endisset
     <!--- Validation CDN --->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js"></script> -->
+<!-- whitespace validation--->
 
+<script>
+        $('input').keypress(function(e) {
+            if (this.value.length === 0 && e.which === 32) e.preventDefault();
+        });
+        $('textarea').keypress(function(e) {
+            if (this.value.length === 0 && e.which === 32) e.preventDefault();
+        });
+        $('input[name="mobile"]').on('input', function() {
+            $(this).val($(this).val().replace(/\D/g, '')); // Remove non-digits
+            if ($(this).val().length > 10) {
+                $(this).val($(this).val().substr(0, 10)); // Limit to 10 digits
+            }
+        });
+
+
+        $('input[name="section"]').on('input', function() {
+            $(this).val($(this).val().replace(/\D/g, '')); // Remove non-digits
+            if ($(this).val().length > 10) {
+                $(this).val($(this).val().substr(0, 10)); // Limit to 10 digits
+            }
+        });
+        </script>
 
     <!-- toastr init -->
     <script>
@@ -474,6 +549,55 @@ $currentRoute = Route::currentRouteName();
             "hideMethod": "fadeOut"
         });
         @endif
+    </script>
+    <!--- Change status -->
+    <script>
+        function changeStatus(where_id, where_id_value, where_column, where_column_value, where_table) {
+
+            // $('.table').html('<i class="fa fa-spinner fa-spin"></i>');
+
+            $.ajax({
+                url: "{{ route('admin.changeStatus') }}", // Replace with your Laravel route
+                type: 'POST',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "where_id": where_id,
+                    "where_id_value": where_id_value,
+                    "where_column": where_column,
+                    "where_column_value": where_column_value,
+                    "where_table": where_table,
+                },
+                success: function(data) {
+                    if (data.status === 'success') {
+                        // Display success message using Toastr
+                        toastr.success('Update successful');
+
+                        // Reload the page after a delay
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 1000);
+                    } else {
+                        // Display error message using Toastr
+                        toastr.error('Error: ' + data.message);
+                    }
+                },
+                error: function(error) {
+                    // Display generic error message using Toastr
+                    toastr.error('An error occurred');
+                }
+            });
+        }
+    </script>
+    
+
+    <!--- Delete model--->
+<script>
+        function deleteData(where_column, where_id, where_table) {
+            $('#delete_modal').modal('show');
+            $('#delColumn').val(where_column);
+            $('#delId').val(where_id);
+            $('#delTable').val(where_table);
+        }
     </script>
     @yield('externaljs')
 </body>

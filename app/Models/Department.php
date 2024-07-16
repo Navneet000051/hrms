@@ -18,6 +18,10 @@ class Department extends Model
         'company_id',
         'department_name',
         'status',
+        'position_by',
+
+        
+
     ];
 
     /**
