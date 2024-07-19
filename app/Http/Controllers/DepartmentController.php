@@ -30,15 +30,21 @@ class DepartmentController extends Controller
         } else {
             $data['editdepartment'] = '';
         }
-      
+    
         $data['companies'] = Company::where('status', 1)->get(); 
         $data['title'] = 'Department';
         $data['departments'] = Department::where('status', 1)->get();
-      
+    
         if ($request->ajax()) {
-            $data = Department::orderBy('position_by', 'asc')->get();
+            $data = Department::with('company') // Load the related company
+                ->orderBy('position_by', 'asc')
+                ->get();
+    
             return DataTables::of($data)
                     ->addIndexColumn()
+                    ->addColumn('company_name', function ($row) {
+                        return $row->company->company_name; // Access the company name
+                    })
                     ->addColumn('status', function ($row) use ($tableName) {
                         if ($row->status == 1) {
                             return "<div class='dropdown d-inline-block user-dropdown'>
@@ -49,8 +55,6 @@ class DepartmentController extends Controller
                                 <div class='dropdown-menu dropdown-menu-end p-2'>
                                     <a class='dropdown-item' style='cursor:pointer;' onclick=\"changeStatus('id', '{$row->id}', 'status', '0', '{$tableName}')\">Inactive</a> 
                                 </div>
-    
-    
                             </div>";
                         } else {
                             return "<div class='dropdown d-inline-block user-dropdown'>
@@ -68,26 +72,25 @@ class DepartmentController extends Controller
                     })
                     ->addColumn('action', function ($row) use ($tableName) {
                         $encryptedId = encrypt($row->id);
-                            $actionBtn = '<a href="' . route('admin.editdepartment', ['id' => $encryptedId]) . '"class="btn btn-sm btn-outline-secondary"><i class="fa fa-edit"></i></a>
-                                            <a href="javascript:void(0)" onclick="deleteData(\'id\', ' . $row->id . ', \'' . $tableName . '\')" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash-o"></i></a>';
-                            return $actionBtn;
+                        $actionBtn = '<a href="' . route('admin.editdepartment', ['id' => $encryptedId]) . '"class="btn btn-sm btn-outline-secondary"><i class="fa fa-edit"></i></a>
+                                        <a href="javascript:void(0)" onclick="deleteData(\'id\', ' . $row->id . ', \'' . $tableName . '\')" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash-o"></i></a>';
+                        return $actionBtn;
                     })
-                  
                     ->setRowAttr([
                         'data-id' => function ($row) {
                             return $row->id;
                         },
                     ])
-                    ->rawColumns(['status', 'action','logo'])
+                    ->rawColumns(['status', 'action'])
                     ->make(true);
         }
     
-        return view('admin.department',$data);
+        return view('admin.department', $data);
     }
-
+    
     public function save(Request $request){ 
         // dd($request->all());
-        $total = Company::count();
+        $total = Department::count();
         $position_by = $total + 1;
         // Handle file upload
  

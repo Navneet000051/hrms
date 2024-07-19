@@ -122,7 +122,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h6 class="card-title">Employee List</h6>
+                        <h6 class="card-title">Department List</h6>
                         <ul class="header-dropdown">
                             <li><button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#AddDepartments">Add New</button></li>
                         </ul>
@@ -180,20 +180,27 @@
     </div>
 </div>
 <!---Delet Model--->
-<div class="modal fade" id="ModalDelete" tabindex="-1" aria-labelledby="ModalDelete" aria-hidden="true">
+<div class="modal fade" id="delete_modal" tabindex="-1" aria-labelledby="delete_modal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body text-center pt-4">
                 <i class="fa fa-warning fa-4x text-warning"></i>
-                <p class="fs-3 my-3">Are you sure?</p>
-                <p class="mb-4">You will not be able to recover this imaginary file!</p>
+                <h3>Delete Data</h3>
+                <p>Are you sure want to delete?</p>
                 <div class="mb-3">
+                <form action="{{route('admin.DeleteData')}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="Id" id="delId" />
+                                            <input type="hidden" name="column" id="delColumn" />
+                                            <input type="hidden" name="table" id="delTable" />
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Yes, delete it!</button>
-                </div>
+                    <button type="submit" class="btn btn-danger" >Yes, delete it!</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection
 @section('externaljs')
@@ -209,8 +216,8 @@
                     name: 'DT_RowIndex'
                 },
                 {
-                    data: 'company_id',
-                    name: 'company_id'
+                    data: 'company_name',
+                    name: 'company_name'
                 },
 
                 {

@@ -39,12 +39,45 @@
                 </div>
             </div>
         </div>
+        <!-- Add Role -->
+        <div class="row clearfix pb-4">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="card-title">Add Role</h6>
+                    </div>
+                    <div class="card-body">
+                        <form id="addForm" action="{{ route('admin.adddesignation') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row g-2">
+                             
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="form-label">Role Name <small class="text-danger">*</small></label>
+                                        <input type="text" class="form-control" placeholder="Role Name" name="role_name">
+                                        @error('role_name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row m-2">
+                                    <div class="col-md-12">
+                                        <button class="mt-3 btn btn-primary form-btn" id="videoBtn" type="submit">SAVE <i class="fa fa-spin fa-spinner" id="videoSpin" style="display:none;"></i></button>
+                                        <a class="text-white mt-3 btn btn-danger form-btn" href="{{ route('admin.role')}}">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="row clearfix">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h6 class="card-title">Employee List</h6>
+                        <h6 class="card-title">Role List</h6>
                         <ul class="header-dropdown">
                             <li><button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#AddDepartments">Add New</button></li>
                         </ul>
@@ -54,100 +87,13 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Department Name</th>
-                                    <th>Department Head</th>
-                                    <th>Total Employee</th>
+                                    <th>Role Name</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>01</td>
-                                    <td>
-                                        <h6 class="mb-0">Web Development</h6>
-                                    </td>
-                                    <td>John Smith</td>
-                                    <td class="dropdown-toggle after-none" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <div class="dropdown">
-                                                <button type="button" class="btn mx-2 btn-simple btn-sm btn-danger btn-filter" data-target="blocked">Blocked</button><button class="btn btn-link dropdown-toggle after-none" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-h"></i></button>
-                                                    <ul class="dropdown-menu border-0 shadow p-3">
-                                                        <li><a class="dropdown-item py-2 rounded" href="#">Action</a></li>
-                                                        <li><a class="dropdown-item py-2 rounded" href="#">Another action</a></li>
-                                                        <li><a class="dropdown-item py-2 rounded" href="#">Something else here</a></li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                    <td>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa fa-edit"></i></button>
-                                        <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash-o"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>02</td>
-                                    <td>
-                                        <h6 class="mb-0">Marketing</h6>
-                                    </td>
-                                    <td>Maryam Amiri1</td>
-                                     <td>
-                                                <div class="dropdown">
-                                                <button type="button" class="btn btn-simple btn-sm btn-success " data-target="approved">Approved</button><button class="btn btn-link dropdown-toggle after-none" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-angle-down"></i></button>
-                                                    <ul class="dropdown-menu border-0 shadow p-3">
-                                                        <li><a class="dropdown-item py-2 rounded" href="#">Action</a></li>
-                                                        <li><a class="dropdown-item py-2 rounded" href="#">Another action</a></li>
-                                                        <li><a class="dropdown-item py-2 rounded" href="#">Something else here</a></li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                   
-                                    <td>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa fa-edit"></i></button>
-                                        <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash-o"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>03</td>
-                                    <td>
-                                        <h6 class="mb-0">App Development</h6>
-                                    </td>
-                                    <td>Frank Camly</td>
-                                    <td><div class='dropdown d-inline-block user-dropdown'>
-                            <button type='button' class='btn text-dark waves-effect' id='page-header-user-dropdown' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                                <div class='badge bg-success-subtle text-success font-size-12'><i class='fa fa-spin fa-spinner'></i>Active</div>
-                                <i class='mdi mdi-chevron-down d-xl-inline-block'></i>
-                            </button>
-                            <div class='dropdown-menu dropdown-menu-end'>
-                                <a class='dropdown-item' style='cursor:pointer;' > Inactive</a> 
-                            </div>
-                        </div></td>
-                                    <td>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa fa-edit"></i></button>
-                                        <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash-o"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>04</td>
-                                    <td>
-                                        <h6 class="mb-0">Support</h6>
-                                    </td>
-                                    <td>Gary Camara</td>
-                                    <td>45</td>
-                                    <td>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa fa-edit"></i></button>
-                                        <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash-o"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>05</td>
-                                    <td>
-                                        <h6 class="mb-0">Accounts</h6>
-                                    </td>
-                                    <td>Fidel Tonn</td>
-                                    <td>8</td>
-                                    <td>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa fa-edit"></i></button>
-                                        <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash-o"></i></button>
-                                    </td>
-                                </tr>
+                                
                             </tbody>
                         </table>
                     </div>
@@ -181,7 +127,7 @@
         </div>
     </div>
     <!---Delet Model--->
-    <div class="modal fade" id="ModalDelete" tabindex="-1" aria-labelledby="ModalDelete" aria-hidden="true">
+    <div class="modal fade" id="delete_modal" tabindex="-1" aria-labelledby="delete_modal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body text-center pt-4">

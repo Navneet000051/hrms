@@ -311,7 +311,7 @@
                                     <td>Android Developer</td>
                                     <td>
                                         <button type="button" class="btn btn-sm btn-outline-secondary" title="Edit"><i class="fa fa-edit"></i></button>
-                                        <button type="button" class="btn btn-sm btn-outline-danger js-sweetalert" title="Delete" data-type="confirm" data-bs-toggle="modal" data-bs-target="#ModalDelete"><i class="fa fa-trash-o"></i></button>
+                                        <button type="button" class="btn btn-sm btn-outline-danger js-sweetalert" title="Delete" data-type="confirm" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="fa fa-trash-o"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -378,16 +378,22 @@
     </div>
 </div>
 <!---Delet Model--->
-<div class="modal fade" id="ModalDelete" tabindex="-1" aria-labelledby="ModalDelete" aria-hidden="true">
+<div class="modal fade" id="delete_modal" tabindex="-1" aria-labelledby="delete_modal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body text-center pt-4">
-                <i class="fa fa-warning fa-4x text-warning"></i>
-                <p class="fs-3 my-3">Are you sure?</p>
-                <p class="mb-4">You will not be able to recover this imaginary file!</p>
+            <h3>Delete Data</h3>
+                <p>Are you sure want to delete?</p>
                 <div class="mb-3">
+                <form action="{{route('admin.DeleteData')}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="Id" id="delId" />
+                                            <input type="hidden" name="column" id="delColumn" />
+                                            <input type="hidden" name="table" id="delTable" />
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Yes, delete it!</button>
+                    <button type="submit" class="btn btn-danger" >Yes, delete it!</button>
+                </form>
                 </div>
             </div>
         </div>

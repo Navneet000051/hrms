@@ -81,7 +81,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // role section =================================================
         Route::get('/role', [RoleController::class, 'index'])->name('role');
-
         Route::get('/addrole', [RoleController::class, 'index'])->name('addrole');
 
 
@@ -98,7 +97,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // designation section ============================================
         Route::get('/designation', [DesignationController::class, 'index'])->name('designation');
-
+        Route::post('/adddesignation', [DesignationController::class, 'save'])->name('adddesignation');
+        Route::get('/editdesignation', [DesignationController::class, 'index'])->name('editdesignation');
+        Route::get('get-departments', [DesignationController::class, 'getDepartments'])->name('getDepartments');
         // change password =================================================
         Route::get('/changePassword', [AdminController::class, 'changePasswordShow'])->name('changePassword');
         Route::put('/changePassword', [AdminController::class, 'changePassword'])->name('changePassworddata');

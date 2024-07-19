@@ -393,7 +393,7 @@ $currentRoute = Route::currentRouteName();
     <script src="{{asset('assets/bundles/inputmask.bundle.js')}}"></script>
     <script src="{{asset('assets/bundles/maskedinput.bundle.js')}}"></script>
     <script src="{{asset('assets/bundles/dropify.bundle.js')}}"></script>
-    <script src="{{asset('assets/bundles/jqueryvalidate.bundle.js')}}"></script>
+    <!-- <script src="{{asset('assets/bundles/jqueryvalidate.bundle.js')}}"></script> -->
     <script src="{{asset('assets/bundles/jquerysteps.bundle.js')}}"></script>
     <script src="{{asset('assets/bundles/dataTables.bundle.js')}}"></script>
 
@@ -456,8 +456,8 @@ $currentRoute = Route::currentRouteName();
         });
     </script>
 @endisset
-    <!--- Validation CDN --->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js"></script> -->
+    <!-- - Validation CDN --->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js"></script>
 <!-- whitespace validation--->
 
 <script>
