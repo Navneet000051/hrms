@@ -21,6 +21,7 @@ class CompanyController extends Controller
     if ($id != '') {
         $id = decrypt($id);
         $data['editcompany'] = Company::where('id', $id)->first();
+        return view('admin.companymodel', $data);
     } else {
         $data['editcompany'] = '';
     }
@@ -61,9 +62,10 @@ class CompanyController extends Controller
                 })
                 ->addColumn('action', function ($row) use ($tableName) {
                     $encryptedId = encrypt($row->id);
-                        $actionBtn = '<a href="' . route('admin.editcompany', ['id' => $encryptedId]) . '"class="btn btn-sm btn-outline-secondary"><i class="fa fa-edit"></i></a>
-                                        <a href="javascript:void(0)" onclick="deleteData(\'id\', ' . $row->id . ', \'' . $tableName . '\')" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash-o"></i></a>';
-                        return $actionBtn;
+                    $actionBtn = '<a href="javascript:void(0)"  onclick="showEdit(\'' . $encryptedId . '\')"  class="btn btn-sm btn-outline-secondary"><i class="fa fa-edit"></i></a>
+                                  <a href="javascript:void(0)"  onclick="deleteData(\'id\', ' . $row->id . ', \'' . $tableName . '\')" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash-o"></i></a>';
+                    return $actionBtn;
+                    
                 })
                 ->addColumn('logo', function ($row) {
                     $actionBtn = '	<a href="' . asset("storage/{$row->logo}") . '" target="_blank"><img src="' . asset("storage/{$row->logo}") . '" width="80"></a>';

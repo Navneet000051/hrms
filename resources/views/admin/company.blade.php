@@ -102,21 +102,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <!-- <table id="emp_role" class="table table-hover mb-0">
-                            <thead>
-                                <tr>
-                                    <th>Sr. No.</th>
-                                    <th>Company Name</th>
-                                    <th>Address</th>
-                                    <th>Logo</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                      
-                            </tbody>
-                        </table> -->
+                   
                     </div>
                 </div>
             </div>
@@ -132,8 +118,7 @@
             <div class="modal-header">
                 <h6 class="title" id="defaultModalLabel">Add Company</h6>
             </div>
-
-            <form action="{{ route('admin.addcompany') }}" method="post" enctype="multipart/form-data">
+            <form id="addForm" action="{{ route('admin.addcompany') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="id" value="">
                 <div class="modal-body">
@@ -166,7 +151,27 @@
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </form>
-
+        </div>
+    </div>
+</div>
+<!-- Edit model  Size -->
+<div class="modal fade" id="EditEmployeeModel" tabindex="-1" aria-labelledby="EditEmployeeModel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="title" id="defaultModalLabel">Edit Company</h6>
+            </div>
+            <form id="addForm" action="{{ route('admin.addcompany') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="id" value="">
+                <div class="modal-body">
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" value="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -195,6 +200,16 @@
 </div>
 @endsection
 @section('externaljs')
+
+<script>
+		function showEdit(id) {
+			$('#EditEmployeeModel').modal("show");
+			$('#EditEmployeeModel .modal-body').html("<center><i class= 'fa fa-2x fa-spin fa-spinner text-warning'></i></center>");
+
+			// Use proper concatenation to include the id in the route
+			$('#EditEmployeeModel .modal-body').load("{{ route('admin.editcompany', ':id') }}".replace(':id', id));
+		}
+	</script>
 <script>
     $(document).ready(function() {
         $('#emp_role')
@@ -203,32 +218,60 @@
             });
     });
 </script>
-<script>
-    function openEditModal(encryptedId) {
-        $.ajax({
-            url: '{{ route("admin.editcompany", ["id" => "ENCRYPTED_ID"]) }}'.replace('ENCRYPTED_ID', encryptedId),
-            type: 'GET',
-            success: function(response) {
-                // Assuming the response contains the company data
-                if (response.success) {
-                    // Populate the modal fields with the response data
-                    $('input[name="company_name"]').val(response.data.company_name);
-                    $('textarea[name="address"]').val(response.data.address);
-                    $('input[name="id"]').val(response.data.id); // Set the hidden ID field
-                    
-                    // Set the logo preview
-                    var logoUrl = '{{ asset("storage/") }}' + '/' + response.data.logo;
-                    $('#dropify-event').attr('data-default-file', logoUrl).dropify();
+<script type="text/javascript">
+    $(document).ready(function() {
+    // Form-validation *****************************
+    $('.dropify').dropify();
 
-                    // Open the modal
-                    $('#EmployeeModel').modal('show');
-                }
+    // Check if default file is set for thumbnail input
+    var defaultlogo = $('.dropify').data('default-file');
+    $('#addForm').validate({
+        ignore: 'hidden',
+        rules: {
+            company_name: {
+                required: true
             },
-            error: function(xhr) {
-                console.log(xhr.responseText);
+            address: {
+                required: true
+            },
+
+            logo: { // Add validation rules for thumbnail
+                required: !defaultlogo, // Make it required
             }
-        });
-    }
+        },
+        messages: {
+            company_name: {
+                required: "Please choose company name"
+            },
+            address: {
+                required: "Please enter address"
+            },
+
+            logo: {
+                required: "Please select logo",
+
+            }
+        },
+        errorElement: 'span',
+        errorPlacement: function(error, element) {
+            if (element.attr("name") == "userid" || "month") {
+                error.addClass('text-danger');
+                error.insertAfter(element.parent());
+            } else {
+                error.addClass('text-danger');
+                error.insertAfter(element);
+            }
+        },
+        highlight: function(element) {
+            $(element).addClass('is-invalid mb-1');
+        },
+        unhighlight: function(element) {
+            $(element).removeClass('is-invalid mb-1');
+        }
+    });
+    // Custom validation for Summernote description
+
+});
 </script>
 
 <script type="text/javascript">
