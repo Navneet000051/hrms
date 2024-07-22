@@ -83,7 +83,7 @@ class DesignationController extends Controller
                             return $row->id;
                         },
                     ])
-                    ->rawColumns(['status', 'action'])
+                    ->rawColumns(['company_name', 'department_name', 'status', 'action'])
                     ->make(true);
         }
     

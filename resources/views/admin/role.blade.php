@@ -44,17 +44,26 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
+                    @if(!empty($editrole))
+                    <h6 class="card-title">Edit Role</h6>
+                    <ul class="header-dropdown">
+                            <li><a href="{{route('admin.role')}}" class="btn btn-primary">Add New</a></li>
+                        </ul>
+                        
+                        @else
                         <h6 class="card-title">Add Role</h6>
+                        @endif
                     </div>
                     <div class="card-body">
-                        <form id="addForm" action="{{ route('admin.adddesignation') }}" method="post" enctype="multipart/form-data">
+                        <form id="AddForm" action="{{ route('admin.addrole') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row g-2">
                              
                                 <div class="col-sm-12">
                                     <div class="form-group">
+                                        <input type="hidden" name="id" value="{{ !empty($editrole) ? $editrole->id : '' }}">
                                         <label class="form-label">Role Name <small class="text-danger">*</small></label>
-                                        <input type="text" class="form-control" placeholder="Role Name" name="role_name">
+                                        <input type="text" class="form-control" placeholder="Role Name" name="role_name" value="{{ !empty($editrole) ? $editrole->role_name : '' }}">
                                         @error('role_name')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -83,8 +92,9 @@
                         </ul>
                     </div>
                     <div class="card-body">
-                        <table id="emp_role" class="table table-hover mb-0">
-                            <thead>
+                    <div class="table-responsive">
+                            <table class="table table-bordered data-table dt-responsive nowrap" id="yajradb">
+                                <thead id="sortable">
                                 <tr>
                                     <th>#</th>
                                     <th>Role Name</th>
@@ -97,6 +107,7 @@
                             </tbody>
                         </table>
                     </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -104,28 +115,6 @@
     </div>
 </div>
 
-    <!-- Add model  Size -->
-    <div class="modal fade" id="AddDepartments" tabindex="-1" aria-labelledby="AddDepartments" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h6 class="title" id="defaultModalLabel">Add Role</h6>
-                </div>
-                <div class="modal-body">
-                    <div class="row g-2">
-                        <div class="col-12">
-                            <input type="text" class="form-control" placeholder="Role Name">
-                        </div>
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Add</button>
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <!---Delet Model--->
     <div class="modal fade" id="delete_modal" tabindex="-1" aria-labelledby="delete_modal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -144,12 +133,91 @@
     </div>
 @endsection
 @section('externaljs')
+
 <script>
-    $(document).ready(function () {
-        $('#emp_role')
-        .dataTable({
-            responsive: true,
+    $(document).ready(function() {
+        $('#AddForm').validate({
+            ignore: ":hidden:not('.validate-hidden')",
+            rules: {
+                role_name: {
+                    required: true,
+                    remote: {
+                        url: "{{ route('admin.checkRoleName') }}",
+                        type: "post",
+                        data: {
+                            role_name: function() {
+                                return $("input[name='role_name']").val();
+                            },
+                            id: function() {
+                                return $("input[name='id']").val(); // Assuming you have an input field for the role ID in your form
+                            },
+                            _token: "{{ csrf_token() }}"
+                        },
+                        dataFilter: function(response) {
+                            var data = JSON.parse(response);
+                            if (data.isDuplicate) {
+                                return JSON.stringify("Role name already exists");
+                            } else {
+                                return true;
+                            }
+                        }
+                    }
+                },
+            },
+            messages: {
+                role_name: {
+                    required: "Please enter the role",
+                    remote: "Role name already exists"
+                },
+            },
+            errorElement: 'span',
+            errorPlacement: function(error, element) {
+                error.addClass('text-danger');
+                if (element.attr("name") == "nametype") {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            },
+            highlight: function(element) {
+                $(element).addClass('is-invalid mb-1');
+            },
+            unhighlight: function(element) {
+                $(element).removeClass('is-invalid mb-1');
+            }
         });
+
+    });
+</script>
+
+<script type="text/javascript">
+    $(function() {
+
+        var table = $('#yajradb').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('admin.role') }}",
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex'
+                },
+                {
+                    data: 'role_name',
+                    name: 'role_name'
+                },
+                {
+                    data: 'status',
+                    name: 'status'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
+                },
+            ]
+        });
+
     });
 </script>
 @endsection

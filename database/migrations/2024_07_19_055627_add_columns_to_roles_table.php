@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('roles', function (Blueprint $table) {
             $table->string('role_name')->after('id'); // Adjust the 'after' clause as needed
+            $table->boolean('status')->default(1)->after('role_name'); // Adjust the 'after' clause as needed
         });
     }
 
@@ -23,6 +24,7 @@ return new class extends Migration
     {
         Schema::table('roles', function (Blueprint $table) {
             $table->dropColumn('role_name');
+            $table->dropColumn('status');
         });
     }
 };

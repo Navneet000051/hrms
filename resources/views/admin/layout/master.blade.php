@@ -28,16 +28,9 @@ $currentRoute = Route::currentRouteName();
     <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/css1.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/toastr.min.css')}}">
-    <style>
-        .table tr th {
-    border-color: #fff;
-    background-color: #000;
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 12px;
-    border-width: 0 0 0  1px;
-}
-    </style>
+    <!----Custom CSS---->
+    <link rel="stylesheet" href="{{asset('assets/css/style.min.css')}}">
+
 </head>
 
 <body>
@@ -213,7 +206,7 @@ $currentRoute = Route::currentRouteName();
                             <ul class="main-menu metismenu active list-unstyled">
                                 <li class="{{ $currentRoute == 'admin.dashboard' ? 'active' : '' }}"><a href="{{ route('admin.dashboard') }}"><i class="fa fa-tachometer"></i><span>SuperAdmin Dashboard</span></a></li>
                                 <li class="{{ $currentRoute == 'admin.admindashboard' ? 'active' : '' }}"><a href="{{ route('admin.admindashboard') }}"><i class="fa fa-tachometer"></i><span>Admin Dashboard</span></a></li>
-                                
+
                                 <li><a href="app-events.html"><i class="fa fa-calendar"></i><span>Events</span></a></li>
                                 <li><a href="app-social.html"><i class="fa fa-globe"></i><span>HR Social</span></a></li>
 
@@ -221,7 +214,7 @@ $currentRoute = Route::currentRouteName();
                                     <a href="#Employees" class="has-arrow"><i class="fa fa-users"></i><span>Employees</span></a>
                                     <ul class="list-unstyled {{ in_array($currentRoute, ['admin.employee','admin.attendance']) ? 'mm-show' : '' }}">
                                         <li class="{{ $currentRoute == 'admin.employee' ? 'active' : '' }}"><a href="{{ route('admin.employee') }}">All Employees</a></li>
-                                       
+
                                         <li class="{{ $currentRoute == 'admin.attendance' ? 'active' : '' }}"><a href="{{ route('admin.attendance') }}">Attendance</a></li>
                                     </ul>
                                 </li>
@@ -235,13 +228,23 @@ $currentRoute = Route::currentRouteName();
                                         <li class="{{ $currentRoute == 'admin.role' ? 'active' : '' }}"><a href="{{ route('admin.role') }}">Role</a></li>
                                     </ul>
                                 </li>
-                                <li class="{{ in_array($currentRoute, [ 'admin.holidays', 'admin.leave']) ? 'active mm-active' : '' }}">
-                                    <a href="#Holidays" class="has-arrow"><i class="fa fa-signing"></i><span>Holidays</span></a>
-                                    <ul class="list-unstyled {{ in_array($currentRoute, [ 'admin.holidays', 'admin.leave']) ? 'mm-show' : '' }}">
-                                    <li class="{{ $currentRoute == 'admin.leave' ? 'active' : '' }}"><a href="{{ route('admin.leave') }}">Leave Requests</a></li>
-                                    <li class="{{ $currentRoute == 'admin.holidays' ? 'active' : '' }}"><a href="{{ route('admin.holidays') }}"><span>Holidays</span></a></li>    
+                                <li class="{{ in_array($currentRoute, ['admin.leavequota', 'admin.leavesummary']) ? 'active mm-active' : '' }}">
+                                    <a href="#LeaveReport" class="has-arrow"><i class="fa fa-globe"></i><span>Leave Report</span></a>
+                                    <ul class="list-unstyled {{ in_array($currentRoute, [ 'admin.leavequota', 'admin.leavesummary']) ? 'mm-show' : '' }}">
+                                    <li class="{{ $currentRoute == 'admin.leavequota' ? 'active' : '' }}"><a href="{{ route('admin.leavequota') }}">Leave Quota</a></li>
+
+                                    <li class="{{ $currentRoute == 'admin.leavesummary' ? 'active' : '' }}"><a href="{{ route('admin.leavesummary') }}">Leave Summery</a></li>
                                 </ul>
                                 </li>
+                                <li class="{{ in_array($currentRoute, [ 'admin.holidays', 'admin.leave']) ? 'active mm-active' : '' }}">
+                                    <a href="#Holidays" class="has-arrow"><i class="fa fa-signing"></i><span>Holidays & Leave</span></a>
+                                    <ul class="list-unstyled {{ in_array($currentRoute, [ 'admin.holidays', 'admin.leave']) ? 'mm-show' : '' }}">
+                                    <li class="{{ $currentRoute == 'admin.leave' ? 'active' : '' }}"><a href="{{ route('admin.leave') }}">Leave Requests</a></li>
+                                    <li class="{{ $currentRoute == 'admin.holidays' ? 'active' : '' }}"><a href="{{ route('admin.holidays') }}"><span>Holidays</span></a></li>
+                                </ul>
+                                </li>
+
+
 
                             </ul>
                         </nav>
@@ -417,7 +420,7 @@ $currentRoute = Route::currentRouteName();
         <!-- jQuery UI Sortable -->
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!---Make the table rows sortable -->
-    
+
     @isset($tablename)
     <script>
         $(document).ready(function() {
@@ -588,7 +591,7 @@ $currentRoute = Route::currentRouteName();
             });
         }
     </script>
-    
+
 
     <!--- Delete model--->
 <script>

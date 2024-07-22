@@ -11,6 +11,8 @@ use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HolidaysController;
 use App\Http\Controllers\LeaveController;
+use App\Http\Controllers\LeaveQuotaController;
+use App\Http\Controllers\LeaveSummaryController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UpdatePositionController;
 use Illuminate\Support\Facades\Route;
@@ -72,37 +74,61 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // employee section ==============================================
         Route::get('/employee', [EmployeeController::class, 'index'])->name('employee');
 
-        // leave section ============================================== 
+        // leave section ==============================================
 
         Route::get('/leave', [LeaveController::class, 'index'])->name('leave');
+
+        // leave section ==============================================
+
+        Route::get('/leave', [LeaveController::class, 'index'])->name('leave');
+        Route::post('/addleave', [LeaveController::class, 'save'])->name('addleave');
+        Route::get('editleave/{id}', [LeaveController::class, 'index'])->name('editleave');
+
+
+        // leave Quota section ==============================================
+
+        Route::get('/leavequota', [LeaveQuotaController::class, 'index'])->name('leavequota');
+        Route::post('/addleavequota', [LeaveQuotaController::class, 'save'])->name('addleavequota');
+        Route::get('editleavequota/{id}', [LeaveQuotaController::class, 'index'])->name('editleavequota');
+
+        // leave summary section ==============================================
+
+        Route::get('/leavesummary', [LeaveSummaryController::class, 'index'])->name('leavesummary');
 
         // attendance section ============================================
         Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance');
 
         // role section =================================================
         Route::get('/role', [RoleController::class, 'index'])->name('role');
-        Route::get('/addrole', [RoleController::class, 'index'])->name('addrole');
+        Route::post('/addrole', [RoleController::class, 'save'])->name('addrole');
+        Route::get('/editrole/{id}', [RoleController::class, 'index'])->name('editrole');
+        Route::post('check-role-name', [RoleController::class, 'checkRoleName'])->name('checkRoleName');
 
 
         // company section ================================================
         Route::get('/company', [CompanyController::class, 'index'])->name('company');
-        Route::get('/editcompany', [CompanyController::class, 'index'])->name('editcompany');
+        Route::get('/editcompany/{id}', [CompanyController::class, 'index'])->name('editcompany');
         Route::post('/addcompany', [CompanyController::class, 'save'])->name('addcompany');
 
         // department section =============================================
         Route::get('/department', [DepartmentController::class, 'index'])->name('department');
         Route::post('/adddepartment', [DepartmentController::class, 'save'])->name('adddepartment');
-        Route::get('/editdepartment', [DepartmentController::class, 'index'])->name('editdepartment');
+        Route::get('/editdepartment/{id}', [DepartmentController::class, 'index'])->name('editdepartment');
 
 
         // designation section ============================================
         Route::get('/designation', [DesignationController::class, 'index'])->name('designation');
         Route::post('/adddesignation', [DesignationController::class, 'save'])->name('adddesignation');
-        Route::get('/editdesignation', [DesignationController::class, 'index'])->name('editdesignation');
+        Route::get('/editdesignation/{id}', [DesignationController::class, 'index'])->name('editdesignation');
         Route::get('get-departments', [DesignationController::class, 'getDepartments'])->name('getDepartments');
+
+
         // change password =================================================
         Route::get('/changePassword', [AdminController::class, 'changePasswordShow'])->name('changePassword');
         Route::put('/changePassword', [AdminController::class, 'changePassword'])->name('changePassworddata');
+
+
+        // Delete Data =================================================
 
         Route::delete('/deleteData', [deleteController::class, 'destroy'])->name('DeleteData');
 

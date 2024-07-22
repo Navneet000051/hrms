@@ -1,23 +1,5 @@
 @extends('admin.layout.master')
 @section('content')
-    <!-- <div class="col-12">
-                            <div class="card">
-
-                                <div class="card-body">
-                                    <div class="row g-3">
-                                        <div class="col-lg-3 col-md-6">
-                                            <label class="form-label">Basic</label>
-                                            <select class="form-select select2" aria-label="Default select example">
-                                                <option selected>Open this select menu</option>
-                                                <option>Mustard</option>
-                                                <option>Ketchup</option>
-                                                <option>Relish</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-        </div> -->
 
     <div id="main-content">
         <div class="container-fluid">
@@ -28,11 +10,7 @@
                         <h2 class="m-0 fs-5"><a href="javascript:void(0);"
                                 class="btn btn-sm btn-link ps-0 btn-toggle-fullwidth"><i class="fa fa-arrow-left"></i></a>
                             Leave Request</h2>
-                        {{-- <ul class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="index.html">Lucid</a></li>
-                        <li class="breadcrumb-item">Employee</li>
-                        <li class="breadcrumb-item active">Leave Request</li>
-                    </ul> --}}
+
                     </div>
                     <div class="col-md-6 col-sm-12 text-md-end">
                         <div class="d-inline-flex text-start">
@@ -59,7 +37,67 @@
                     </div>
                 </div>
             </div>
+<!----Add Form--->
 
+<div class="row clearfix pb-4">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                @if (!empty($editleavequota))
+                    <h6 class="card-title">Edit Leave Quota</h6>
+                    <ul class="header-dropdown">
+                        <li><a href="{{ route('admin.leavequota') }}" class="btn btn-primary">Add New</a></li>
+                    </ul>
+                @else
+                    <h6 class="card-title">Add Leave Quota</h6>
+                @endif
+            </div>
+            <div class="card-body">
+                <form id="addForm" action="{{ route('admin.addleave') }}" method="post"
+                    enctype="multipart/form-data">
+                    @csrf
+                    <div class="row g-2">
+                        <input type="hidden" name="id" value="{{ $editleavequota->id ?? '' }}">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="form-label">Duration <small class="text-danger">*</small></label>
+                                <select class="form-select select2" aria-label="Default select example">
+                                    <option>Choose Duration</option>
+                                    <option>Single Day</option>
+                                    <option>Multiple Days</option>
+                                    <option>Half Day</option>
+                                </select>
+                                @error('leavetype')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label class="form-label">From <small class="text-danger">*</small></label>
+                                <input type="text" data-provide="datepicker" data-date-autoclose="true"
+                                     class="form-control" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy">
+                                @error('duration')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row m-2">
+                            <div class="col-md-12">
+                                <button class="mt-3 btn btn-primary form-btn" id="videoBtn" type="submit">SAVE
+                                    <i class="fa fa-spin fa-spinner" id="videoSpin"
+                                        style="display:none;"></i></button>
+                                <a class="text-white mt-3 btn btn-danger form-btn"
+                                    href="{{ route('admin.leave') }}">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!----Add Form End Here--->
             <div class="row clearfix">
                 <div class="col-lg-12">
                     <div class="card mb-4">

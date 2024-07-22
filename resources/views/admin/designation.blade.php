@@ -1,46 +1,6 @@
 @extends('admin.layout.master')
 @section('content')
-<style>
-    .dropify-wrapper {
-        height: 120px !important;
-    }
 
-    .profile .dropify-wrapper {
-        height: 200px !important;
-    }
-
-    .btn-check:checked+.btn,
-    :not(.btn-check)+.btn:active,
-    .btn:first-child:active,
-    .btn.active,
-    .btn.show {
-        color: var(--bs-btn-active-color);
-        background-color: var(--bs-btn-active-bg);
-        border-color: #fff;
-    }
-
-    .bg-success-subtle {
-        background-color: #d2f1e8 !important;
-    }
-
-    .text-success {
-        --bs-text-opacity: 1;
-        color: rgba(28, 187, 140, 1) !important;
-    }
-
-    .badge {
-        font-weight: 400;
-        font-size: 12px !important;
-    }
-
-    .dropdown-item:hover,
-    .dropdown-item:focus,
-    .dropdown-item.active {
-        background-color: var(--primary-color);
-        color: #fff;
-        border-radius: 50rem;
-    }
-</style>
 <div id="main-content">
     <div class="container-fluid">
 
@@ -156,7 +116,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                             
+
                             </tbody>
                         </table>
                     </div>
@@ -209,7 +169,7 @@
             designation_name: {
                 required: true
             },
-            
+
         },
         messages: {
             company_id: {
@@ -221,7 +181,7 @@
             designation_name: {
                 required: "Please choose designation name"
             },
-           
+
         },
         errorElement: 'span',
         errorPlacement: function(error, element) {
@@ -289,7 +249,7 @@
                     data: 'department_name',
                     name: 'department_name'
                 },
-                
+
                 {
                     data: 'designation_name',
                     name: 'designation_name'
