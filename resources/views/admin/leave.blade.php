@@ -58,9 +58,9 @@
                     @csrf
                     <div class="row g-2">
                         <input type="hidden" name="id" value="{{ $editleavequota->id ?? '' }}">
-                        <div class="col-md-6 col-sm-12">
+                        <div class="col-md-5 col-sm-12">
                             <div class="form-group">
-                                <label class="form-label">Duration <small class="text-danger">*</small></label>
+                                <label class="form-label">Leave Duration <small class="text-danger">*</small></label>
                                 <select class="form-select select2" aria-label="Default select example">
                                     <option>Choose Duration</option>
                                     <option>Single Day</option>
@@ -72,7 +72,36 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-12">
+                        <div class="col-md-5 col-sm-12">
+                            <div class="form-group">
+                                <label class="form-label">Leave Type <small class="text-danger">*</small></label>
+                                <select class="form-select select2" aria-label="Default select example">
+                                    <option>Choose Duration</option>
+                                    <option>Single Day</option>
+                                    <option>Multiple Days</option>
+                                    <option>Half Day</option>
+                                </select>
+                                @error('leavetype')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-12">
+                            <div class="form-group">
+                                <label class="form-label">Sandwich Leave <small class="text-danger">*</small></label>
+                                <div class="d-flex">
+                                            <div class="form-check">
+                                                <input class="form-check-input ps-2" id="flexCheckDefault6" type="checkbox" name="checkbox" required="" data-parsley-errors-container="#error-checkbox">
+                                             
+                                            </div>
+                                            
+                                        </div>
+                                @error('duration')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
                             <div class="form-group">
                                 <label class="form-label">From <small class="text-danger">*</small></label>
                                 <input type="text" data-provide="datepicker" data-date-autoclose="true"
@@ -82,6 +111,17 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label class="form-label">To <small class="text-danger">*</small></label>
+                                <input type="text" data-provide="datepicker" data-date-autoclose="true"
+                                     class="form-control" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy">
+                                @error('duration')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                       
                         <div class="row m-2">
                             <div class="col-md-12">
                                 <button class="mt-3 btn btn-primary form-btn" id="videoBtn" type="submit">SAVE
@@ -274,13 +314,13 @@
     </div>
 @endsection
 @section('externaljs')
-    <script>
+    <!-- <script>
         $(document).ready(function() {
             $(".form-select").select2({
                 dropdownParent: $("#exampleModal")
             });
         });
-    </script>
+    </script> -->
     <script>
         $(document).ready(function() {
             var extensions = {

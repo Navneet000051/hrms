@@ -161,7 +161,7 @@
             <div class="modal-header">
                 <h6 class="title" id="defaultModalLabel">Edit Company</h6>
             </div>
-            <form id="addForm" action="{{ route('admin.addcompany') }}" method="post" enctype="multipart/form-data">
+            <form id="editForm" action="{{ route('admin.addcompany') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="id" value="">
                 <div class="modal-body">
@@ -208,6 +208,7 @@
 
 			// Use proper concatenation to include the id in the route
 			$('#EditEmployeeModel .modal-body').load("{{ route('admin.editcompany', ':id') }}".replace(':id', id));
+            
 		}
 	</script>
 <script>

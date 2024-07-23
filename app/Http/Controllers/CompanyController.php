@@ -90,6 +90,7 @@ class CompanyController extends Controller
     $position_by = $total + 1;
     // Handle file upload
     if ($request->hasFile('logo')) {
+      
         $logoPath = $request->file('logo')->store('company', 'public');
 
         // Delete the old logo if updating an existing record
@@ -100,13 +101,14 @@ class CompanyController extends Controller
             }
         }
     }
-
+    // dd($logoPath);
     // Check if it's an update operation
     if (!empty($request->id)) {
         // Validate the incoming request data
         $request->validate([
             'company_name' => 'required|string|',
             'address' => 'required|string|',
+            'logo' => 'required|image|mimes:jpeg,png,jpg,webp,gif|max:2048', 
         ]);
         $company= Company::find($request->id);
         if (!empty($company)) {
@@ -114,7 +116,7 @@ class CompanyController extends Controller
                
                 'company_name' => $request->company_name,
                 'address' => $request->address,
-                'logo' => isset($logoPath) ? $logoPath : $company->logo, // Update logo only if a new one is uploaded
+                'logo' => isset($logoPath) ? $logoPath : 'blank', // Update logo only if a new one is uploaded
             ]);
             Session::flash('success', 'Data updated successfully!');
         } else {

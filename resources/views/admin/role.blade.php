@@ -63,7 +63,7 @@
                                     <div class="form-group">
                                         <input type="hidden" name="id" value="{{ !empty($editrole) ? $editrole->id : '' }}">
                                         <label class="form-label">Role Name <small class="text-danger">*</small></label>
-                                        <input type="text" class="form-control" placeholder="Role Name" name="role_name" value="{{ !empty($editrole) ? $editrole->role_name : '' }}">
+                                        <input type="text" class="form-control" placeholder="Role Name" name="role_name" value="{{ !empty($editrole->role_name) ? $editrole->role_name : old('role_name') }}">
                                         @error('role_name')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror

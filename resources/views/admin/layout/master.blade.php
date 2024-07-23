@@ -147,7 +147,8 @@ $currentRoute = Route::currentRouteName();
                                 <!-- more link -->
                                 <li class="dropdown">
 
-                                    <a class="dropdown-toggle icon-menu" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <img src="https://bfcsofttech.com/assets/img/logo.webp" alt="logo-dark" height="30"><span class="d-none d-xl-inline-block ms-1" style="color:gray;">{{ auth()->user()->name}} </span> <i class="fa fa-angle-down d-none d-xl-inline-block"></i></a>
+                                    <a class="dropdown-toggle icon-menu" href="{{ !empty(auth()->user()->icon) ? asset('storage/'.auth()->user()->icon) : asset('assets/images/user.jpg') }}" target="_blank" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                         <img class="rounded-circle" src="{{ !empty(auth()->user()->icon) ? asset('storage/'.auth()->user()->icon) : asset('assets/images/user.jpg') }}" target="_blank"  alt="logo-dark" height="30"><span class="d-none d-xl-inline-block ms-1" style="color:gray;">{{ auth()->user()->name}} </span> <i class="fa fa-angle-down d-none d-xl-inline-block"></i></a>
                                     <ul class="dropdown-menu dropdown-menu-end p-2 shadow">
                                         <li><a class="dropdown-item rounded-pill" href="{{ route('admin.adminprofile') }}"><i class="me-2 fa fa-user"></i> <span>Profile</span></a></li>
                                         <li><a class="dropdown-item rounded-pill" href="{{ route('admin.changePassword') }}"><i class="me-2 fa fa-unlock-alt"></i> <span>Change Password</span></a></li>
@@ -231,17 +232,17 @@ $currentRoute = Route::currentRouteName();
                                 <li class="{{ in_array($currentRoute, ['admin.leavequota', 'admin.leavesummary']) ? 'active mm-active' : '' }}">
                                     <a href="#LeaveReport" class="has-arrow"><i class="fa fa-globe"></i><span>Leave Report</span></a>
                                     <ul class="list-unstyled {{ in_array($currentRoute, [ 'admin.leavequota', 'admin.leavesummary']) ? 'mm-show' : '' }}">
-                                    <li class="{{ $currentRoute == 'admin.leavequota' ? 'active' : '' }}"><a href="{{ route('admin.leavequota') }}">Leave Quota</a></li>
+                                        <li class="{{ $currentRoute == 'admin.leavequota' ? 'active' : '' }}"><a href="{{ route('admin.leavequota') }}">Leave Quota</a></li>
 
-                                    <li class="{{ $currentRoute == 'admin.leavesummary' ? 'active' : '' }}"><a href="{{ route('admin.leavesummary') }}">Leave Summery</a></li>
-                                </ul>
+                                        <li class="{{ $currentRoute == 'admin.leavesummary' ? 'active' : '' }}"><a href="{{ route('admin.leavesummary') }}">Leave Summery</a></li>
+                                    </ul>
                                 </li>
                                 <li class="{{ in_array($currentRoute, [ 'admin.holidays', 'admin.leave']) ? 'active mm-active' : '' }}">
                                     <a href="#Holidays" class="has-arrow"><i class="fa fa-signing"></i><span>Holidays & Leave</span></a>
                                     <ul class="list-unstyled {{ in_array($currentRoute, [ 'admin.holidays', 'admin.leave']) ? 'mm-show' : '' }}">
-                                    <li class="{{ $currentRoute == 'admin.leave' ? 'active' : '' }}"><a href="{{ route('admin.leave') }}">Leave Requests</a></li>
-                                    <li class="{{ $currentRoute == 'admin.holidays' ? 'active' : '' }}"><a href="{{ route('admin.holidays') }}"><span>Holidays</span></a></li>
-                                </ul>
+                                        <li class="{{ $currentRoute == 'admin.leave' ? 'active' : '' }}"><a href="{{ route('admin.leave') }}">Leave Requests</a></li>
+                                        <li class="{{ $currentRoute == 'admin.holidays' ? 'active' : '' }}"><a href="{{ route('admin.holidays') }}"><span>Holidays</span></a></li>
+                                    </ul>
                                 </li>
 
 
@@ -404,11 +405,47 @@ $currentRoute = Route::currentRouteName();
     <script src="{{asset('assets/js/pages/forms/advanced-form-elements.js')}}"></script>
     <!-- page js file -->
 
-  <script src="{{asset('assets/js/pages/forms/form-wizard.js')}}"></script>
-    <script src="{{asset('assets/js/pages/forms/dropify.js')}}"></script>
+    <script src="{{asset('assets/js/pages/forms/form-wizard.js')}}"></script>
+    <!-- <script src="{{asset('assets/js/pages/forms/dropify.js')}}"></script> -->
     <script src="{{asset('assets/bundles/toastr.bundle.js')}}"></script>
-      <!-- Ajax Request -->
-      <script>
+    <!-- Dropify Js -->
+    <script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.dropify').dropify({
+                showErrors: true,
+                errorTimeout: 3000,
+                errorsPosition: 'overlay',
+                // Include WEBP in allowed extensions
+                imgFileExtensions: ['png', 'jpg', 'jpeg', 'gif', 'bmp', 'webp', 'mp4'],
+                maxFileSizePreview: "5M",
+                allowedFormats: ['portrait', 'square', 'landscape'],
+                allowedFileExtensions: ['*'],
+            });
+            var drEvent = $("#dropify-event").dropify();
+            drEvent.on("dropify.beforeClear", function(event, element) {
+                return confirm(
+                    'Do you really want to delete "' + element.file.name + '" ?'
+                );
+            });
+
+            drEvent.on("dropify.afterClear", function(event, element) {
+                alert("File deleted");
+            });
+
+            $(".dropify-fr").dropify({
+                messages: {
+                    default: "Glissez-dÃ©posez un fichier ici ou cliquez",
+                    replace: "Glissez-dÃ©posez un fichier ou cliquez pour remplacer",
+                    remove: "Supprimer",
+                    error: "DÃ©solÃ©, le fichier trop volumineux",
+                },
+            });
+        });
+    </script>
+
+    <!-- Ajax Request -->
+    <script>
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
         $.ajaxSetup({
@@ -417,8 +454,8 @@ $currentRoute = Route::currentRouteName();
             }
         });
     </script>
-        <!-- jQuery UI Sortable -->
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- jQuery UI Sortable -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!---Make the table rows sortable -->
 
     @isset($tablename)
@@ -458,12 +495,12 @@ $currentRoute = Route::currentRouteName();
             }).disableSelection(); // Prevent text selection while dragging
         });
     </script>
-@endisset
+    @endisset
     <!-- - Validation CDN --->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js"></script>
-<!-- whitespace validation--->
+    <!-- whitespace validation--->
 
-<script>
+    <script>
         $('input').keypress(function(e) {
             if (this.value.length === 0 && e.which === 32) e.preventDefault();
         });
@@ -484,7 +521,7 @@ $currentRoute = Route::currentRouteName();
                 $(this).val($(this).val().substr(0, 10)); // Limit to 10 digits
             }
         });
-        </script>
+    </script>
 
     <!-- toastr init -->
     <script>
@@ -594,7 +631,7 @@ $currentRoute = Route::currentRouteName();
 
 
     <!--- Delete model--->
-<script>
+    <script>
         function deleteData(where_column, where_id, where_table) {
             $('#delete_modal').modal('show');
             $('#delColumn').val(where_column);
