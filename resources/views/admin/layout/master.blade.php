@@ -148,7 +148,7 @@ $currentRoute = Route::currentRouteName();
                                 <li class="dropdown">
 
                                     <a class="dropdown-toggle icon-menu" href="{{ !empty(auth()->user()->icon) ? asset('storage/'.auth()->user()->icon) : asset('assets/images/user.jpg') }}" target="_blank" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                         <img class="rounded-circle" src="{{ !empty(auth()->user()->icon) ? asset('storage/'.auth()->user()->icon) : asset('assets/images/user.jpg') }}" target="_blank"  alt="logo-dark" height="30"><span class="d-none d-xl-inline-block ms-1" style="color:gray;">{{ auth()->user()->name}} </span> <i class="fa fa-angle-down d-none d-xl-inline-block"></i></a>
+                                         <img class="rounded-circle" src="{{ !empty(auth()->user()->icon) ? asset('storage/'.auth()->user()->icon) : asset('assets/images/user.jpg') }}" target="_blank"  alt="logo-dark" height="35" width="35"><span class="d-none d-xl-inline-block ms-1" style="color:gray;">{{ auth()->user()->name}} </span> <i class="fa fa-angle-down d-none d-xl-inline-block"></i></a>
                                     <ul class="dropdown-menu dropdown-menu-end p-2 shadow">
                                         <li><a class="dropdown-item rounded-pill" href="{{ route('admin.adminprofile') }}"><i class="me-2 fa fa-user"></i> <span>Profile</span></a></li>
                                         <li><a class="dropdown-item rounded-pill" href="{{ route('admin.changePassword') }}"><i class="me-2 fa fa-unlock-alt"></i> <span>Change Password</span></a></li>

@@ -39,36 +39,42 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
+
+                        @if (!empty($editdepartment))
+                        <h6 class="card-title">Edit Department</h6>
+                        <ul class="header-dropdown">
+                            <li><a href="{{ route('admin.department') }}" class="btn btn-primary">Add New</a></li>
+                        </ul>
+                        @else
                         <h6 class="card-title">Add Department</h6>
-                        <!-- <ul class="header-dropdown">
-                            <li><button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#AddDepartments">Add New</button></li>
-                        </ul> -->
+                        @endif
                     </div>
                     <div class="card-body">
                         <form action="{{ route('admin.adddepartment') }}" method="post" enctype="multipart/form-data">
                             @csrf
+                            <input type="hidden" name="id" value="{{ !empty($editdepartment) ? $editdepartment->id : '' }}">
                             <div class="row g-2">
 
                                 <div class="col-6">
                                     <label class="form-label">Company Name <small class="text-danger">*</small></label>
                                     <select class="form-select select2" aria-label="Default select example" name="company_id">
-
+                                        @if(empty($editdepartment))
                                         <option>Choose Company Name</option>
+                                        @endif
                                         @foreach($companies as $company)
-                                        <option value="{{ $company->id }}"> {{ $company->company_name }} </option>
+                                        <option value="{{ $company->id }}" @if(!empty($editdepartment) && $editdepartment->company_id == $company->id) selected @endif> {{ $company->company_name }} </option>
                                         @endforeach()
                                     </select>
                                 </div>
                                 <div class="col-6">
                                     <label class="form-label">Department Name <small class="text-danger">*</small></label>
-                                    <input type="text" class="form-control" placeholder="Department Name" name="department_name">
+                                    <input type="text" class="form-control" placeholder="Department Name" name="department_name" value="{{ !empty($editdepartment) ? $editdepartment->department_name : old('department_name') }}">
                                 </div>
                             </div>
                             <div class="row m-2">
                                 <div class="col-md-12">
                                     <button class="mt-3 btn btn-primary form-btn" id="videoBtn" type="submit">SAVE <i class="fa fa-spin fa-spinner" id="videoSpin" style="display:none;"></i></button>
                                     <a class="text-white mt-3 btn btn-danger  form-btn" href="{{ route('admin.department')}}">Cancel</a>
-
                                 </div>
                             </div>
                         </form>
@@ -87,22 +93,22 @@
                         </ul>
                     </div>
                     <div class="card-body">
-                    <div class="table-responsive">
+                        <div class="table-responsive">
                             <table class="table table-bordered data-table dt-responsive nowrap" id="yajradb">
                                 <thead id="sortable">
-                                <tr>
-                                    <th>SR. No.</th>
-                                    <th>Company Name</th>
-                                    <th>Department Name</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                                    <tr>
+                                        <th>SR. No.</th>
+                                        <th>Company Name</th>
+                                        <th>Department Name</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                            </tbody>
-                        </table>
-                    </div>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -111,33 +117,6 @@
     </div>
 </div>
 
-<!-- Add model  Size -->
-<div class="modal fade" id="AddDepartments" tabindex="-1" aria-labelledby="AddDepartments" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h6 class="title" id="defaultModalLabel">Add Departments</h6>
-            </div>
-            <div class="modal-body">
-                <div class="row g-2">
-                    <div class="col-12">
-                        <input type="text" class="form-control" placeholder="Departments Name">
-                    </div>
-                    <div class="col-6">
-                        <input type="text" class="form-control" placeholder="Departments Head">
-                    </div>
-                    <div class="col-6">
-                        <input type="number" class="form-control" placeholder="No of Employee">
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Add</button>
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
 <!---Delet Model--->
 <div class="modal fade" id="delete_modal" tabindex="-1" aria-labelledby="delete_modal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -147,19 +126,19 @@
                 <h3>Delete Data</h3>
                 <p>Are you sure want to delete?</p>
                 <div class="mb-3">
-                <form action="{{route('admin.DeleteData')}}" method="post" enctype="multipart/form-data">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="hidden" name="Id" id="delId" />
-                                            <input type="hidden" name="column" id="delColumn" />
-                                            <input type="hidden" name="table" id="delTable" />
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
-                    <button type="submit" class="btn btn-danger" >Yes, delete it!</button>
-                </form>
+                    <form action="{{route('admin.DeleteData')}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="Id" id="delId" />
+                        <input type="hidden" name="column" id="delColumn" />
+                        <input type="hidden" name="table" id="delTable" />
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
+                        <button type="submit" class="btn btn-danger">Yes, delete it!</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 @endsection
 @section('externaljs')

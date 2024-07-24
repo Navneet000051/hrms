@@ -101,22 +101,23 @@ class CompanyController extends Controller
             }
         }
     }
-    // dd($logoPath);
     // Check if it's an update operation
     if (!empty($request->id)) {
+        // dd($request->all());
         // Validate the incoming request data
         $request->validate([
             'company_name' => 'required|string|',
-            'address' => 'required|string|',
-            'logo' => 'required|image|mimes:jpeg,png,jpg,webp,gif|max:2048', 
+            'address' => 'required|string|'
         ]);
         $company= Company::find($request->id);
+
         if (!empty($company)) {
+            // dd(1);
             $company->update([
                
                 'company_name' => $request->company_name,
                 'address' => $request->address,
-                'logo' => isset($logoPath) ? $logoPath : 'blank', // Update logo only if a new one is uploaded
+                'logo' => isset($logoPath) ? $logoPath : $company->logo, // Update logo only if a new one is uploaded
             ]);
             Session::flash('success', 'Data updated successfully!');
         } else {

@@ -13,8 +13,10 @@ class Company extends Model
      *
      * @var array
      */
+    protected $table = 'companies';
     protected $fillable = [
         'company_name',
+        'address',
         'logo',
         'status',
     ];
