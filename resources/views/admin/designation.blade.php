@@ -40,11 +40,20 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h6 class="card-title">Add Designation</h6>
+                
+                @if (!empty($editdesignation))
+                        <h6 class="card-title">Edit Designation</h6>
+                        <ul class="header-dropdown">
+                            <li><a href="{{ route('admin.designation') }}" class="btn btn-primary">Add New</a></li>
+                        </ul>
+                        @else
+                        <h6 class="card-title">Designation</h6>
+                @endif
             </div>
             <div class="card-body">
                 <form id="addForm" action="{{ route('admin.adddesignation') }}" method="post" enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" name="id" value="{{ !empty($editdesignation->id) ? $editdesignation->id : '' }}">
                     <div class="row g-2">
                         <div class="col-md-4 col-sm-12">
                             <div class="form-group">
@@ -52,7 +61,7 @@
                                 <select id="company_id" class="form-select select2" aria-label="Default select example" name="company_id">
                                     <option value="">Choose Company Name</option>
                                     @foreach($companies as $company)
-                                    <option value="{{ $company->id }}"> {{ $company->company_name }} </option>
+                                    <option value="{{ $company->id }}" @if(!empty($editdesignation) && $editdesignation->company_id == $company->id) selected @endif> {{ $company->company_name }} </option>
                                     @endforeach()
                                 </select>
                                 @error('company_id')
@@ -74,7 +83,7 @@
                         <div class="col-md-4 col-sm-12">
                             <div class="form-group">
                                 <label class="form-label">Designation Name <small class="text-danger">*</small></label>
-                                <input type="text" class="form-control" placeholder="Designation Name" name="designation_name">
+                                <input type="text" class="form-control" placeholder="Designation Name" name="designation_name" value="{{ !empty($editdesignation) ? $editdesignation->designation_name : old('designation_name') }}">
                                 @error('designation_name')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -205,28 +214,40 @@
 });
 </script>
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('#company_id').change(function() {
-            var companyId = $(this).val();
-            if (companyId) {
-                $.ajax({
-                    url: '{{ route("admin.getDepartments") }}',
-                    type: 'GET',
-                    data: { company_id: companyId },
-                    success: function(data) {
-                        $('#department_id').empty();
-                        $('#department_id').append('<option value="">Choose Department Name</option>');
-                        $.each(data, function(key, value) {
-                            $('#department_id').append('<option value="'+ key +'">'+ value +'</option>');
-                        });
-                    }
-                });
-            } else {
-                $('#department_id').empty();
-                $('#department_id').append('<option value="">First Choose Company Name</option>');
-            }
-        });
+$(document).ready(function() {
+    var companyId = $('#company_id').val();
+    var departmentId = "{{ !empty($editdesignation->department_id) ? $editdesignation->department_id : '' }}";
+
+    if (companyId) {
+        loadDepartments(companyId, departmentId);
+    }
+
+    $('#company_id').change(function() {
+        var companyId = $(this).val();
+        loadDepartments(companyId, null);
     });
+
+    function loadDepartments(companyId, selectedDepartmentId) {
+        if (companyId) {
+            $.ajax({
+                url: '{{ route("admin.getDepartments") }}',
+                type: 'GET',
+                data: { company_id: companyId },
+                success: function(data) {
+                    $('#department_id').empty();
+                    $('#department_id').append('<option value="">Choose Department Name</option>');
+                    $.each(data, function(key, value) {
+                        $('#department_id').append('<option value="'+ key +'"' + (selectedDepartmentId == key ? ' selected' : '') + '>'+ value +'</option>');
+                    });
+                }
+            });
+        } else {
+            $('#department_id').empty();
+            $('#department_id').append('<option value="">First Choose Company Name</option>');
+        }
+    }
+});
+
 </script>
 
 <script type="text/javascript">

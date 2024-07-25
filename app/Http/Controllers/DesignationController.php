@@ -7,6 +7,7 @@ use App\Models\Department;
 use App\Models\Designation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rule;
 use Yajra\DataTables\Facades\DataTables;
 
 class DesignationController extends Controller
@@ -90,40 +91,54 @@ class DesignationController extends Controller
         return view('admin.designation', $data);
     }
     
-    public function save(Request $request){ 
-        // dd($request->all());
+    public function save(Request $request)
+    {
         $total = Designation::count();
         $position_by = $total + 1;
-        // Handle file upload
+    
         // Check if it's an update operation
         if (!empty($request->id)) {
-            // Validate the incoming request data
+            // Validate the incoming request data including the custom rule for duplicate entry
             $request->validate([
                 'company_id' => 'required|numeric|exists:companies,id',
                 'department_id' => 'required|numeric|exists:departments,id',
-                'designation_name' => 'required|string|',
+                'designation_name' => [
+                    'required',
+                    'string',
+                    Rule::unique('designations')->where(function ($query) use ($request) {
+                        return $query->where('company_id', $request->company_id)
+                                     ->where('department_id', $request->department_id);
+                    })->ignore($request->id)
+                ],
             ]);
-            $designation= Designation::find($request->id);
+    
+            $designation = Designation::find($request->id);
             if (!empty($designation)) {
                 $designation->update([
-                   
                     'designation_name' => $request->designation_name,
                     'company_id' => $request->company_id,
                     'department_id' => $request->department_id,
                 ]);
                 Session::flash('success', 'Data updated successfully!');
             } else {
-                Session::flash('error', 'Company with ID ' . $request->id . ' not found.');
+                Session::flash('error', 'Designation with ID ' . $request->id . ' not found.');
             }
         } else {
             $request->validate([
                 'company_id' => 'required|numeric|exists:companies,id',
                 'department_id' => 'required|numeric|exists:departments,id',
-                'designation_name' => 'required|string|',
-               
+                'designation_name' => [
+                    'required',
+                    'string',
+                    Rule::unique('designations')->where(function ($query) use ($request) {
+                        return $query->where('company_id', $request->company_id)
+                                     ->where('department_id', $request->department_id);
+                    })
+                ],
             ]);
-            // Create a new company instance
-            $designation= new Designation();
+    
+            // Create a new designation instance
+            $designation = new Designation();
             $designation->company_id = $request->company_id;
             $designation->department_id = $request->department_id;
             $designation->designation_name = $request->designation_name;
@@ -131,14 +146,15 @@ class DesignationController extends Controller
             $designation->save();
             Session::flash('success', 'Data added successfully!');
         }
+    
         // Redirect back with success or error message
         return redirect()->route('admin.designation');
-        }
-
-        public function getDepartments(Request $request)
-{
-    $departments = Department::where('company_id', $request->company_id)->where('status', 1)->pluck('department_name', 'id');
-    return response()->json($departments);
-}
-
+    }
+    public function getDepartments(Request $request)
+    {
+        $departments = Department::where('company_id', $request->company_id)
+                                  ->where('status', 1)
+                                  ->pluck('department_name', 'id');
+        return response()->json($departments);
+    }
 }

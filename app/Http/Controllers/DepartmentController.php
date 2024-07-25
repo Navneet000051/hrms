@@ -7,6 +7,7 @@ use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 use Yajra\DataTables\Facades\DataTables;
 
 class DepartmentController extends Controller
@@ -89,46 +90,58 @@ class DepartmentController extends Controller
     }
 
     public function save(Request $request)
-    {
-        // dd($request->all());
-        $total = Department::count();
-        $position_by = $total + 1;
-        // Handle file upload
+{
+    // dd($request->all());
+    $total = Department::count();
+    $position_by = $total + 1;
 
+    // Check if it's an update operation
+    if (!empty($request->id)) {
+        // Validate the incoming request data including the custom rule for duplicate entry
+        $request->validate([
+            'company_id' => 'required|numeric|exists:companies,id',
+            'department_name' => [
+                'required',
+                'string',
+                Rule::unique('departments')->where(function ($query) use ($request) {
+                    return $query->where('company_id', $request->company_id);
+                })->ignore($request->id)
+            ],
+        ]);
 
-        // Check if it's an update operation
-        if (!empty($request->id)) {
-            // Validate the incoming request data
-            $request->validate([
-                'company_id' => 'required|numeric|exists:companies,id',
-                'department_name' => 'required|string|',
+        $department = Department::find($request->id);
+        if (!empty($department)) {
+            $department->update([
+                'department_name' => $request->department_name,
+                'company_id' => $request->company_id,
             ]);
-            $department = Department::find($request->id);
-            if (!empty($department)) {
-                $department->update([
-
-                    'department_name' => $request->department_name,
-                    'company_id' => $request->company_id,
-                ]);
-                Session::flash('success', 'Data updated successfully!');
-            } else {
-                Session::flash('error', 'Company with ID ' . $request->id . ' not found.');
-            }
+            Session::flash('success', 'Data updated successfully!');
         } else {
-            $request->validate([
-                'company_id' => 'required|numeric|exists:companies,id',
-                'department_name' => 'required|string|',
-
-            ]);
-            // Create a new company instance
-            $department = new Department();
-            $department->company_id = $request->company_id;
-            $department->department_name = $request->department_name;
-            $department->position_by = $position_by;
-            $department->save();
-            Session::flash('success', 'Data added successfully!');
+            Session::flash('error', 'Company with ID ' . $request->id . ' not found.');
         }
-        // Redirect back with success or error message
-        return redirect()->route('admin.department');
+    } else {
+        $request->validate([
+            'company_id' => 'required|numeric|exists:companies,id',
+            'department_name' => [
+                'required',
+                'string',
+                Rule::unique('departments')->where(function ($query) use ($request) {
+                    return $query->where('company_id', $request->company_id);
+                })
+            ],
+        ]);
+
+        // Create a new department instance
+        $department = new Department();
+        $department->company_id = $request->company_id;
+        $department->department_name = $request->department_name;
+        $department->position_by = $position_by;
+        $department->save();
+        Session::flash('success', 'Data added successfully!');
     }
+
+    // Redirect back with success or error message
+    return redirect()->route('admin.department');
+}
+
 }

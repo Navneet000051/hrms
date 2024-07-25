@@ -34,7 +34,7 @@
                 </div>
             </div>
         </div>
-
+<!-- Department Add/Edit Form Start Here...-->
         <div class="row clearfix pb-4">
             <div class="col-lg-12">
                 <div class="card">
@@ -50,25 +50,36 @@
                         @endif
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.adddepartment') }}" method="post" enctype="multipart/form-data">
+                        <form id="addForm" action="{{ route('admin.adddepartment') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" value="{{ !empty($editdepartment) ? $editdepartment->id : '' }}">
                             <div class="row g-2">
 
                                 <div class="col-6">
+                                <div class="form-group">
                                     <label class="form-label">Company Name <small class="text-danger">*</small></label>
                                     <select class="form-select select2" aria-label="Default select example" name="company_id">
                                         @if(empty($editdepartment))
-                                        <option>Choose Company Name</option>
+                                        <option value="">Choose Company Name</option>
                                         @endif
                                         @foreach($companies as $company)
                                         <option value="{{ $company->id }}" @if(!empty($editdepartment) && $editdepartment->company_id == $company->id) selected @endif> {{ $company->company_name }} </option>
                                         @endforeach()
+                                
                                     </select>
+                                    @error('company_id')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                </div>
                                 </div>
                                 <div class="col-6">
+                                <div class="form-group">
                                     <label class="form-label">Department Name <small class="text-danger">*</small></label>
                                     <input type="text" class="form-control" placeholder="Department Name" name="department_name" value="{{ !empty($editdepartment) ? $editdepartment->department_name : old('department_name') }}">
+                                    @error('department_name')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                </div>
                                 </div>
                             </div>
                             <div class="row m-2">
@@ -82,6 +93,7 @@
                 </div>
             </div>
         </div>
+<!--- Department Add/Edit Form End Here...-->
 
         <div class="row clearfix">
             <div class="col-lg-12">
@@ -142,6 +154,51 @@
 </div>
 @endsection
 @section('externaljs')
+<script type="text/javascript">
+    $(document).ready(function() {
+    // Form-validation *****************************
+    $('.dropify').dropify();
+    $('#addForm').validate({
+        ignore: 'hidden',
+        rules: {
+            company_id: {
+                required: true
+            },
+            department_name: {
+                required: true
+            },
+        },
+        messages: {
+            company_id: {
+                required: "Please choose company name"
+            },
+            department_name: {
+                required: "Please enter department name"
+            },
+
+        },
+        errorElement: 'span',
+        errorPlacement: function(error, element) {
+            if (element.attr("name") == "userid" || "month") {
+                error.addClass('text-danger');
+                error.insertAfter(element.parent());
+            } else {
+                error.addClass('text-danger');
+                error.insertAfter(element);
+            }
+        },
+        highlight: function(element) {
+            $(element).addClass('is-invalid mb-1');
+        },
+        unhighlight: function(element) {
+            $(element).removeClass('is-invalid mb-1');
+        }
+    });
+    // Custom validation for Summernote description
+
+});
+</script>
+
 <script type="text/javascript">
     $(function() {
 
