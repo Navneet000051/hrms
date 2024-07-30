@@ -121,7 +121,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/designation', [DesignationController::class, 'index'])->name('designation');
         Route::post('/adddesignation', [DesignationController::class, 'save'])->name('adddesignation');
         Route::get('/editdesignation/{id}', [DesignationController::class, 'index'])->name('editdesignation');
-        Route::get('get-departments', [DesignationController::class, 'getDepartments'])->name('getDepartments');
+        
+        Route::get('get-departments', [DepartmentController::class, 'getDepartments'])->name('getDepartments');
 
         Route::get('get-cities', [CityController::class, 'getCities'])->name('getCities');
 

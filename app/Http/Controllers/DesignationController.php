@@ -150,11 +150,5 @@ class DesignationController extends Controller
         // Redirect back with success or error message
         return redirect()->route('admin.designation');
     }
-    public function getDepartments(Request $request)
-    {
-        $departments = Department::where('company_id', $request->company_id)
-                                  ->where('status', 1)
-                                  ->pluck('department_name', 'id');
-        return response()->json($departments);
-    }
+   
 }

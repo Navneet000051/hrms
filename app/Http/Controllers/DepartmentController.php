@@ -144,4 +144,12 @@ class DepartmentController extends Controller
     return redirect()->route('admin.department');
 }
 
+//Get Department Data
+public function getDepartments(Request $request)
+{
+    $departments = Department::where('company_id', $request->company_id)
+                              ->where('status', 1)
+                              ->pluck('department_name', 'id');
+    return response()->json($departments);
+}
 }
