@@ -52,110 +52,110 @@
                         @endif
                     </div>
                     <div class="card-body">
-                    <form id="addForm" action="{{ route('admin.addleave') }}" method="post" enctype="multipart/form-data">
-    @csrf
-    <div class="row g-2">
-        <input type="hidden" name="id" value="{{ $editleavequota->id ?? '' }}">
-        <div class="col-md-5 col-sm-12">
-            <div class="form-group">
-                <label class="form-label">Leave Duration <small class="text-danger">*</small></label>
-                <select class="form-select select2" aria-label="Default select example" id="duration" name="duration">
-                    <option value="">Choose Duration</option>
-                    <option value="1">Single Day</option>
-                    <option value="2">Multiple Days</option>
-                    <option value="3">Half Day</option>
-                </select>
-                @error('duration')
-                <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-        </div>
-        <div class="col-md-5 col-sm-12">
-            <div class="form-group">
-                <label class="form-label">Leave Type <small class="text-danger">*</small></label>
-                <select class="form-select select2" aria-label="Default select example" id="leavetype" name="leavetype">
-                    <option>Choose Leave Type</option>
-                    @foreach($leavequotas as $leavequota)
-                    <option value="{{ $leavequota->id }}">{{ $leavequota->leavetype }}</option>
-                    @endforeach
-                </select>
-                @error('leavetype')
-                <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-        </div>
-        <div class="col-md-2 col-sm-12">
-            <div class="form-group">
-                <label class="form-label">Sandwich Leave <small class="text-danger">*</small></label>
-                <div class="d-flex">
-                    <div class="form-check">
-                        <input class="form-check-input ps-2" id="flexCheckDefault6" type="checkbox" name="checkbox" required="" data-parsley-errors-container="#error-checkbox">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 col-sm-12">
-            <div class="row">
-                <div class="col-sm-12" id="fromdate">
-                    <div class="form-group">
-                        <label class="form-label">From <small class="text-danger">*</small></label>
-                        <input type="text" data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" name="fromdate">
-                        @error('fromdate')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
-                <div class="col-sm-12 pt-2 d-none" id="todate">
-                    <div class="form-group">
-                        <label class="form-label">To <small class="text-danger">*</small></label>
-                        <input type="text" data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" name="todate">
-                        @error('todate')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
-                <div class="col-sm-12 pt-2 d-none" id="shift">
-                    <div class="form-group">
-                        <label class="form-label">Shift <small class="text-danger">*</small></label>
-                        <select class="form-select select2" aria-label="Default select example" id="shift" name="shift">
-                            <option value="">Choose Shift</option>
-                            <option value="1">Morning Shift</option>
-                            <option value="2">Evening Shift</option>
-                        </select>
-                        @error('shift')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 col-sm-12" id="reason">
-            <div class="form-group">
-                <label class="form-label">Reason <small class="text-danger">*</small></label>
-                <textarea rows="4" class="form-control no-resize" placeholder="Leave Reason *" name="reason"></textarea>
-                @error('reason')
-                <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-        </div>
-        <div class="col-lg-6 col-sm-12 d-none" id="document">
-            <div class="form-group">
-                <label class="form-label">Document <small class="text-danger">*</small></label>
-                <input type="file" class="dropify" name="document">
-                @error('document')
-                <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-        </div>
-        <div class="row m-2">
-            <div class="col-md-12">
-                <button class="mt-3 btn btn-primary form-btn" id="videoBtn" type="submit">SAVE
-                    <i class="fa fa-spin fa-spinner" id="videoSpin" style="display:none;"></i></button>
-                <a class="text-white mt-3 btn btn-danger form-btn" href="{{ route('admin.leave') }}">Cancel</a>
-            </div>
-        </div>
-    </div>
-</form>
+                        <form id="addForm" action="{{ route('admin.addleave') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row g-2">
+                                <input type="hidden" name="id" value="{{ $editleavequota->id ?? '' }}">
+                                <div class="col-md-5 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="form-label">Leave Duration <small class="text-danger">*</small></label>
+                                        <select class="form-select select2" aria-label="Default select example" id="duration" name="duration">
+                                            <option value="">Choose Duration</option>
+                                            <option value="1">Single Day</option>
+                                            <option value="2">Multiple Days</option>
+                                            <option value="3">Half Day</option>
+                                        </select>
+                                        @error('duration')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-5 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="form-label">Leave Type <small class="text-danger">*</small></label>
+                                        <select class="form-select select2" aria-label="Default select example" id="leavetype" name="leavetype">
+                                            <option>Choose Leave Type</option>
+                                            @foreach($leavequotas as $leavequota)
+                                            <option value="{{ $leavequota->id }}">{{ $leavequota->leavetype }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('leavetype')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-12">
+                                    <div class="form-group">
+                                        <label class="form-label">Sandwich Leave <small class="text-danger">*</small></label>
+                                        <div class="d-flex">
+                                            <div class="form-check">
+                                                <input class="form-check-input ps-2" id="flexCheckDefault6" type="checkbox" name="checkbox" required="" data-parsley-errors-container="#error-checkbox">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-12" id="fromdate">
+                                            <div class="form-group">
+                                                <label class="form-label">From <small class="text-danger">*</small></label>
+                                                <input type="text" data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" name="fromdate">
+                                                @error('fromdate')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 pt-2 d-none" id="todate">
+                                            <div class="form-group">
+                                                <label class="form-label">To <small class="text-danger">*</small></label>
+                                                <input type="text" data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" name="todate">
+                                                @error('todate')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 pt-2 d-none" id="shift">
+                                            <div class="form-group">
+                                                <label class="form-label">Shift <small class="text-danger">*</small></label>
+                                                <select class="form-select select2" aria-label="Default select example" id="shift" name="shift">
+                                                    <option value="">Choose Shift</option>
+                                                    <option value="1">Morning Shift</option>
+                                                    <option value="2">Evening Shift</option>
+                                                </select>
+                                                @error('shift')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12" id="reason">
+                                    <div class="form-group">
+                                        <label class="form-label">Reason <small class="text-danger">*</small></label>
+                                        <textarea rows="4" class="form-control no-resize" placeholder="Leave Reason *" name="reason"></textarea>
+                                        @error('reason')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12 d-none" id="document">
+                                    <div class="form-group">
+                                        <label class="form-label">Document <small class="text-danger">*</small></label>
+                                        <input type="file" class="dropify" name="document">
+                                        @error('document')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row m-2">
+                                    <div class="col-md-12">
+                                        <button class="mt-3 btn btn-primary form-btn" id="videoBtn" type="submit">SAVE
+                                            <i class="fa fa-spin fa-spinner" id="videoSpin" style="display:none;"></i></button>
+                                        <a class="text-white mt-3 btn btn-danger form-btn" href="{{ route('admin.leave') }}">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
 
                     </div>
                 </div>
@@ -269,7 +269,7 @@
                             <option value="">Choose Duration</option>
                             <option value="1">Single Day</option>
                             <option value="2">Multiple Days</option>
-                            <option   value="3">Half Day</option>
+                            <option value="3">Half Day</option>
                         </select>
                     </div>
                     <div class="col-lg-6 col-sm-12">
@@ -286,7 +286,7 @@
                         <label class="form-label">From <small class="text-danger">*</small></label>
                         <input type="text" data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy">
                     </div>
-                    
+
                     <div class="col-6 d-none" id="todate">
                         <label class="form-label">To <small class="text-danger">*</small></label>
                         <input type="text" data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy">
@@ -294,7 +294,7 @@
                     <div class="col-12" id="reason">
                         <textarea rows="6" class="form-control no-resize" placeholder="Leave Reason *"></textarea>
                     </div>
-                    
+
                 </div>
             </div>
             <div class="modal-footer">
@@ -349,50 +349,49 @@
     });
 </script>
 <script>
-    $(document).ready(function () {
-    // Initially hide the fields
-    $('#todate').addClass('d-none');
-    $('#shift').addClass('d-none');
-    $('#document').addClass('d-none');
+    $(document).ready(function() {
+        // Initially hide the fields
+        $('#todate').addClass('d-none');
+        $('#shift').addClass('d-none');
+        $('#document').addClass('d-none');
 
-    // Show/hide fields based on duration selection
-    $('#duration').change(function () {
-        var duration = $(this).val();
-        if (duration == '2') { // Multiple Days
+        // Show/hide fields based on duration selection
+        $('#duration').change(function() {
+            var duration = $(this).val();
+            if (duration == '2') { // Multiple Days
+                $('#todate').removeClass('d-none');
+                $('#shift').addClass('d-none');
+            } else if (duration == '3') { // Half Day
+                $('#shift').removeClass('d-none');
+                $('#todate').addClass('d-none');
+            } else { // Single Day or empty
+                $('#todate').addClass('d-none');
+                $('#shift').addClass('d-none');
+            }
+        });
+
+        // Show/hide document field based on leave type selection
+        $('#leavetype').change(function() {
+            var leaveType = $(this).find('option:selected').text().toLowerCase();
+            if (leaveType.includes('medical')) { // Check if the selected leave type includes 'medical'
+                $('#document').removeClass('d-none');
+            } else {
+                $('#document').addClass('d-none');
+            }
+        });
+
+        // If editing, set the initial state based on the existing data
+        var initialDuration = $('#duration').val();
+        if (initialDuration == '2') {
             $('#todate').removeClass('d-none');
-            $('#shift').addClass('d-none');
-        } else if (duration == '3') { // Half Day
+        } else if (initialDuration == '3') {
             $('#shift').removeClass('d-none');
-            $('#todate').addClass('d-none');
-        } else { // Single Day or empty
-            $('#todate').addClass('d-none');
-            $('#shift').addClass('d-none');
         }
-    });
 
-    // Show/hide document field based on leave type selection
-    $('#leavetype').change(function () {
-        var leaveType = $(this).find('option:selected').text().toLowerCase();
-        if (leaveType.includes('medical')) { // Check if the selected leave type includes 'medical'
+        var initialLeaveType = $('#leavetype').find('option:selected').text().toLowerCase();
+        if (initialLeaveType.includes('medical')) {
             $('#document').removeClass('d-none');
-        } else {
-            $('#document').addClass('d-none');
         }
     });
-
-    // If editing, set the initial state based on the existing data
-    var initialDuration = $('#duration').val();
-    if (initialDuration == '2') {
-        $('#todate').removeClass('d-none');
-    } else if (initialDuration == '3') {
-        $('#shift').removeClass('d-none');
-    }
-
-    var initialLeaveType = $('#leavetype').find('option:selected').text().toLowerCase();
-    if (initialLeaveType.includes('medical')) {
-        $('#document').removeClass('d-none');
-    }
-});
-
 </script>
 @endsection

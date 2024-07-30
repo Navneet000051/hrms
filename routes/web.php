@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\changeStatusController;
+use App\Http\Controllers\CityController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\deleteController;
 use App\Http\Controllers\DepartmentController;
@@ -121,6 +122,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/adddesignation', [DesignationController::class, 'save'])->name('adddesignation');
         Route::get('/editdesignation/{id}', [DesignationController::class, 'index'])->name('editdesignation');
         Route::get('get-departments', [DesignationController::class, 'getDepartments'])->name('getDepartments');
+
+        Route::get('get-cities', [CityController::class, 'getCities'])->name('getCities');
+
 
 
         // change password =================================================

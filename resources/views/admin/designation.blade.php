@@ -213,6 +213,8 @@
 
 });
 </script>
+
+<!---Get Department Data ---->
 <script type="text/javascript">
 $(document).ready(function() {
     var companyId = $('#company_id').val();

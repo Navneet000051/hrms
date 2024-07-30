@@ -1,11 +1,12 @@
 @extends('admin.layout.master')
 @section('content')
 <style>
-    .dropify-wrapper{
-        height:120px !important;
+    .dropify-wrapper {
+        height: 120px !important;
     }
-    .profile .dropify-wrapper{
-        height:200px !important;
+
+    .profile .dropify-wrapper {
+        height: 200px !important;
     }
 </style>
 <div id="main-content">
@@ -56,7 +57,7 @@
                             <h3>Personal Information</h3>
                             <fieldset>
                                 <div class="row g-2">
-                              
+
                                     <div class="mb-3 col-sm-12 col-lg-4">
                                         <label class="form-label">Employee ID <small class="text-danger">*</small></label>
                                         <input type="number" name="surname" placeholder="Employee ID *" class="form-control" required="">
@@ -79,10 +80,39 @@
                                     </div>
                                     <div class="mb-3  col-sm-12 col-lg-4">
                                         <label class="form-label">Date of Birth <small class="text-danger">*</small></label>
-                                        <input type="text" data-provide="datepicker" data-date-autoclose="true"
-                                        class="form-control" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy">
+                                        <input type="text" data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy">
                                     </div>
                                     <div class="mb-3 col-sm-12 col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">State <small class="text-danger">*</small></label>
+                                            <select class="form-select select1" aria-label="Default select example" name="state" id="state_id">
+                                                <option selected>Choose State</option>
+                                                @foreach($states as $state)
+                                                <option value="{{ $state->id }}">{{ $state->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('state')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 col-sm-12 col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">City <small class="text-danger">*</small></label>
+                                            <select class="form-select select1" aria-label="Default select example" name="city">
+                                                <option selected>Choose State First</option>
+                                                @foreach($cities as $city)
+                                                <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('city')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="mb-3 col-sm-12 col-lg-4">
                                         <label class="form-label">Join Date <small class="text-danger">*</small></label>
                                         <input type="text" data-provide="datepicker" data-date-autoclose="true"
                                         class="form-control" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy">
@@ -96,7 +126,7 @@
                                     <div class="mb-3 col-sm-12 col-lg-4">
                                         <label class="form-label">Designation <small class="text-danger">*</small></label>
                                         <input type="text" name="designation" placeholder="designation *" class="form-control" required="">
-                                    </div>
+                                    </div> -->
 
 
                                 </div>
@@ -104,7 +134,7 @@
                             <h3>Contact Information</h3>
                             <fieldset>
                                 <div class="row g-2">
-                                <div class="mb-3 col-sm-12 col-lg-6">
+                                    <div class="mb-3 col-sm-12 col-lg-6">
                                         <label class="form-label">Mobile Number <small class="text-danger">*</small></label>
                                         <input type="number" name="name" placeholder="Mobile Number *" class="form-control" required="">
                                     </div>
@@ -124,12 +154,12 @@
                             </fieldset>
                             <h3>Profile Information</h3>
                             <fieldset>
-                       
-                            <div class="mb-3 profile">
+
+                                <div class="mb-3 profile">
                                     <input type="file" id="dropify-event">
                                 </div>
                             </fieldset>
-                          
+
                             <h3>Account Information</h3>
                             <fieldset>
                                 <div class="row g-2">
@@ -156,17 +186,19 @@
                                     </div>
                                     <div class="mb-3  col-sm-12 col-lg-4">
                                         <label class="form-label">Document2 <small class="text-danger">*</small></label>
-                                        <input type="file" class="dropify" >
+                                        <input type="file" class="dropify">
                                     </div>
 
                                 </div>
                             </fieldset>
-                      
+
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+
+
         <div class="row clearfix">
             <div class="col-lg-12">
                 <div class="card mb-4">
@@ -325,7 +357,7 @@
 </div>
 
 <!-- Add model  Size -->
-<div class="modal fade" id="addEmployee" tabindex="-1" aria-labelledby="addEmployee" aria-hidden="true">
+<div class="modal fade" id="addEmployee" aria-labelledby="addEmployee" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -382,18 +414,18 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body text-center pt-4">
-            <h3>Delete Data</h3>
+                <h3>Delete Data</h3>
                 <p>Are you sure want to delete?</p>
                 <div class="mb-3">
-                <form action="{{route('admin.DeleteData')}}" method="post" enctype="multipart/form-data">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="hidden" name="Id" id="delId" />
-                                            <input type="hidden" name="column" id="delColumn" />
-                                            <input type="hidden" name="table" id="delTable" />
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
-                    <button type="submit" class="btn btn-danger" >Yes, delete it!</button>
-                </form>
+                    <form action="{{route('admin.DeleteData')}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="Id" id="delId" />
+                        <input type="hidden" name="column" id="delColumn" />
+                        <input type="hidden" name="table" id="delTable" />
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancle</button>
+                        <button type="submit" class="btn btn-danger">Yes, delete it!</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -415,4 +447,47 @@
             });
     });
 </script>
+<script>
+    $(document).ready(function() {
+        $('.select1').select2();
+    });
+</script>
+<!---Get City Data ---->
+<script type="text/javascript">
+$(document).ready(function() {
+    var stateId = $('#state_id').val();
+    var cityId = "{{ !empty($editemployee->city_id) ? $editemployee->city_id : '' }}";
+
+    if (stateId) {
+        loadCities(stateId, cityId);
+    }
+
+    $('#state_id').change(function() {
+        var stateId = $(this).val();
+        loadCities(stateId, null);
+    });
+
+    function loadCities(stateId, selectedCityId) {
+        if (companyId) {
+            $.ajax({
+                url: '{{ route("admin.getCities") }}',
+                type: 'GET',
+                data: { state_id: stateId },
+                success: function(data) {
+                    $('#city_id').empty();
+                    $('#city_id').append('<option value="">Choose City Name</option>');
+                    $.each(data, function(key, value) {
+                        $('#city_id').append('<option value="'+ key +'"' + (selectedCityId == key ? ' selected' : '') + '>'+ value +'</option>');
+                    });
+                }
+            });
+        } else {
+            $('#city_id').empty();
+            $('#city_id').append('<option value="">First Choose State Name</option>');
+        }
+    }
+});
+
+</script>
+
 @endsection
