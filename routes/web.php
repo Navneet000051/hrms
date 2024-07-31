@@ -15,6 +15,7 @@ use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\LeaveQuotaController;
 use App\Http\Controllers\LeaveSummaryController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\StateController;
 use App\Http\Controllers\UpdatePositionController;
 use Illuminate\Support\Facades\Route;
 
@@ -115,16 +116,19 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/department', [DepartmentController::class, 'index'])->name('department');
         Route::post('/adddepartment', [DepartmentController::class, 'save'])->name('adddepartment');
         Route::get('/editdepartment/{id}', [DepartmentController::class, 'index'])->name('editdepartment');
-
+        Route::get('get-departments', [DepartmentController::class, 'getDepartments'])->name('getDepartments');
 
         // designation section ============================================
         Route::get('/designation', [DesignationController::class, 'index'])->name('designation');
         Route::post('/adddesignation', [DesignationController::class, 'save'])->name('adddesignation');
         Route::get('/editdesignation/{id}', [DesignationController::class, 'index'])->name('editdesignation');
         
-        Route::get('get-departments', [DepartmentController::class, 'getDepartments'])->name('getDepartments');
-
+        
+       // city section =======================================================================
         Route::get('get-cities', [CityController::class, 'getCities'])->name('getCities');
+      
+        // city section =======================================================================
+        Route::get('get-states', [StateController::class, 'getStates'])->name('getStates');
 
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\city;
 use App\Models\Company;
+use App\Models\country;
 use App\Models\Department;
 use App\Models\Designation;
 use App\Models\Roles;
@@ -33,6 +34,7 @@ class EmployeeController extends Controller
         }
     
 
+      $data['countries'] = country::where('status',1)->get();
       $data['states'] = state::where('status',1)->get();
       $data['cities'] = city::where('status',1)->get(); 
       $data['companies'] = Company::where('status', 1)->get();     

@@ -75,7 +75,7 @@
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                       
+
                                     </div>
                                     <div class="mb-3 col-sm-12 col-lg-4">
                                         <div class="form-group">
@@ -108,68 +108,68 @@
                                         <div class="form-group">
                                             <label class="form-label">Date of Birth <small class="text-danger">*</small></label>
                                             <input type="text" data-provide="datepicker" data-date-autoclose="true" class="form-control" name="dob" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy">
-                                       
+
                                             @error('dob')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
-                                  
+
                                     <div class="mb-3 col-sm-12 col-lg-4">
                                         <div class="row">
                                             <div class="col-12 mb-3">
-                                            <div class="form-group">
-                                            <label class="form-label">State <small class="text-danger">*</small></label>
-                                            <select class="form-select select1" aria-label="Default select example" name="gender">
-                                                <option selected>Choose Gender</option>
-                                              
-                                                <option value="m">Male</option>
-                                                <option value="f">Female</option>
-                                                <option value="o">Other</option>
-                                              
-                                            </select>
-                                            @error('gender')
-                                            <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">State <small class="text-danger">*</small></label>
+                                                    <select class="form-select select1" aria-label="Default select example" name="gender">
+                                                        <option selected>Choose Gender</option>
+
+                                                        <option value="m">Male</option>
+                                                        <option value="f">Female</option>
+                                                        <option value="o">Other</option>
+
+                                                    </select>
+                                                    @error('gender')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                             </div>
                                             <div class="col-12">
-                                            <div class="form-group">
-                                            <label class="form-label">State <small class="text-danger">*</small></label>
-                                            <select class="form-select select1" aria-label="Default select example" name="maritalstatus">
-                                                <option selected>Marital Status</option>
-                                              
-                                                <option value="">Married</option>
-                                                <option value="">Unarried</option>
-                                              
-                                            </select>
-                                            @error('maritalstatus')
-                                            <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">State <small class="text-danger">*</small></label>
+                                                    <select class="form-select select1" aria-label="Default select example" name="maritalstatus">
+                                                        <option selected>Marital Status</option>
+
+                                                        <option value="">Married</option>
+                                                        <option value="">Unarried</option>
+
+                                                    </select>
+                                                    @error('maritalstatus')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mb-3 col-sm-12 col-lg-4">
                                         <div class="row">
                                             <div class="col-12 mb-3">
-                                            <div class="form-group">
-                                            <label class="form-label">Mobile Number <small class="text-danger">*</small></label>
-                                            <input type="number" name="mobile" placeholder="Mobile Number *" class="form-control" required="">
-                                            @error('mobile')
-                                            <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">Mobile Number <small class="text-danger">*</small></label>
+                                                    <input type="number" name="mobile" placeholder="Mobile Number *" class="form-control" required="">
+                                                    @error('mobile')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                             </div>
                                             <div class="col-12">
-                                            <div class="form-group">
-                                            <label class="form-label">Alternate Number <small class="text-danger">*</small></label>
-                                            <input type="number" name="alternatemobile" placeholder="Alternate Number *" class="form-control" required="">
-                                        
-                                            @error('alternatemobile')
-                                            <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">Alternate Number <small class="text-danger">*</small></label>
+                                                    <input type="number" name="alternatemobile" placeholder="Alternate Number *" class="form-control" required="">
+
+                                                    @error('alternatemobile')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -182,20 +182,93 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    
+
 
 
                                 </div>
                             </fieldset>
-                            <h3>Contact Information</h3>
+                            <h3>Address Information</h3>
                             <fieldset>
                                 <div class="row g-2">
+                                    <h6 class="card-title">Residential Address</h6>
+                                    <div class="mb-3 col-sm-12 col-lg-3">
+                                        <div class="form-group">
+                                            <label class="form-label">Country <small class="text-danger">*</small></label>
+                                            <select class="form-select 
+                                            select1" aria-label="Default select example" name="country" id="country_id">
+                                                <option selected>Choose Country</option>
+                                                @foreach($countries as $country)
+                                                <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('country')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
 
-                                     <h6 class="card-title">Residential <Address></Address></h6>
-                                     <div class="mb-3 col-sm-12 col-lg-4">
+                                    <div class="mb-3 col-sm-12 col-lg-3">
                                         <div class="form-group">
                                             <label class="form-label">State <small class="text-danger">*</small></label>
-                                            <select class="form-select select1" aria-label="Default select example" name="state" id="state_id">
+                                            <select class="form-select 
+                                            select1" aria-label="Default select example" name="state" id="state_id">
+                                                <option selected>Choose State</option>
+                                                @foreach($states as $state)
+                                                <option value="{{ $state->id }}">{{ $state->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('state')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+                                    <div class="mb-3 col-sm-12 col-lg-3">
+                                        <div class="form-group">
+                                            <label class="form-label">City <small class="text-danger">*</small></label>
+                                            <select class="form-select select1" aria-label="Default select example" name="city" id="city_id">
+                                                <option selected>Choose State First</option>
+                                            </select>
+                                            @error('city')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3  col-sm-12 col-lg-3">
+                                        <div class="form-group">
+                                            <label class="form-label">Pincode <small class="text-danger">*</small></label>
+                                            <input type="text" class="form-control" name="pincode" placeholder="Pincode">
+
+                                            @error('pincode')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 col-sm-12 col-lg-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Residential Address <small class="text-danger">*</small></label>
+                                            <textarea name="address" cols="30" rows="3" placeholder="Address *" class="form-control no-resize" required=""></textarea>
+                                        </div>
+                                    </div>
+                                    <h6 class="card-title">Permanent Address</h6>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                           
+                                            <div class="d-flex">
+                                                <div class="form-check">
+                                                    <input class="form-check-input ps-2" id="flexCheckDefault6" type="checkbox" name="checkbox" required="" data-parsley-errors-container="#error-checkbox">
+                                                    <label class="form-label">Same as permanent address <small class="text-danger">*</small></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3 col-sm-12 col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">State <small class="text-danger">*</small></label>
+                                            <select class="form-select select1" aria-label="Default select example" name="permanent_state" id="pstate_id">
                                                 <option selected>Choose State</option>
                                                 @foreach($states as $state)
                                                 <option value="{{ $state->id }}">{{ $state->name }}</option>
@@ -210,7 +283,7 @@
                                     <div class="mb-3 col-sm-12 col-lg-4">
                                         <div class="form-group">
                                             <label class="form-label">City <small class="text-danger">*</small></label>
-                                            <select class="form-select select1" aria-label="Default select example" name="city" id="city_id">
+                                            <select class="form-select select1" aria-label="Default select example" name="permanent_city" id="pcity_id">
                                                 <option selected>Choose State First</option>
                                             </select>
                                             @error('city')
@@ -218,15 +291,21 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    
+
                                     <div class="mb-3  col-sm-12 col-lg-4">
                                         <div class="form-group">
                                             <label class="form-label">Pincode <small class="text-danger">*</small></label>
-                                            <input type="text" class="form-control" name="pincode" placeholder="Pincode">
-                                       
+                                            <input type="text" class="form-control" name="permanent_pincode" placeholder="Pincode">
+
                                             @error('pincode')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 col-sm-12 col-lg-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Permanent Address <small class="text-danger">*</small></label>
+                                            <textarea name="address" cols="30" rows="3" placeholder="Address *" class="form-control no-resize" required=""></textarea>
                                         </div>
                                     </div>
                                     <!-- <div class="mb-3 col-sm-12 col-lg-6">
@@ -257,42 +336,76 @@
                             </fieldset>
                             <h3>Company Information</h3>
                             <fieldset>
-                            <div class="row g-2">
-                            <div class="col-md-4 col-sm-12">
-                            <div class="form-group">
-                                <label class="form-label">Company Name <small class="text-danger">*</small></label>
-                                <select id="company_id" class="form-select select1" aria-label="Default select example" name="company_id">
-                                    <option value="">Choose Company Name</option>
-                                    @foreach($companies as $company)
-                                    <option value="{{ $company->id }}" @if(!empty($editdesignation) && $editdesignation->company_id == $company->id) selected @endif> {{ $company->company_name }} </option>
-                                    @endforeach()
-                                </select>
-                                @error('company_id')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-12">
-                            <div class="form-group">
-                                <label class="form-label">Department Name <small class="text-danger">*</small></label>
-                                <select id="department_id" class="form-select select1" aria-label="Default select example" name="department_id">
-                                    <option value="">First Choose Company Name</option>
-                                </select>
-                                @error('department_id')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-12">
-                            <div class="form-group">
-                                <label class="form-label">Designation Name <small class="text-danger">*</small></label>
-                                <input type="text" class="form-control" placeholder="Designation Name" name="designation_name" value="{{ !empty($editdesignation) ? $editdesignation->designation_name : old('designation_name') }}">
-                                @error('designation_name')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                                
+                                <div class="row g-2">
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Company Name <small class="text-danger">*</small></label>
+                                            <select id="company_id" class="form-select select1" aria-label="Default select example" name="company_id">
+                                                <option value="">Choose Company Name</option>
+                                                @foreach($companies as $company)
+                                                <option value="{{ $company->id }}" @if(!empty($editdesignation) && $editdesignation->company_id == $company->id) selected @endif> {{ $company->company_name }} </option>
+                                                @endforeach()
+                                            </select>
+                                            @error('company_id')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Department Name <small class="text-danger">*</small></label>
+                                            <select id="department_id" class="form-select select1" aria-label="Default select example" name="department_id">
+                                                <option value="">First Choose Company Name</option>
+                                            </select>
+                                            @error('department_id')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Designation Name <small class="text-danger">*</small></label>
+                                            <input type="text" class="form-control" placeholder="Designation Name" name="designation_name" value="{{ !empty($editdesignation) ? $editdesignation->designation_name : old('designation_name') }}">
+                                            @error('designation_name')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 col-sm-12 col-lg-3">
+                                        <div class="form-group">
+                                            <label class="form-label">Join Date <small class="text-danger">*</small></label>
+                                            <input type="text" data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" name="joindate">
+                                            @error('joindate')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 col-sm-12 col-lg-3">
+                                        <div class="form-group">
+                                            <label class="form-label">Confirmation Date <small class="text-danger">*</small></label>
+                                            <input type="text" data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" name="confiramtiondate">
+                                            @error('confirmationdate')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 col-sm-12 col-lg-3">
+                                        <div class="form-group">
+                                            <label class="form-label">Exit Date <small class="text-danger">*</small></label>
+                                            <input type="text" data-provide="datepicker" data-date-autoclose="true" class="form-control" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" name="exitdate">
+                                            @error('exitdate')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 col-sm-12 col-lg-3">
+                                        <div class="form-group">
+                                            <label class="form-label">Role <small class="text-danger">*</small></label>
+                                            <input type="number" name="surname" placeholder="Role *" class="form-control" required="">
+                                        </div>
+                                    </div>
+
                                 </div>
                             </fieldset>
 
@@ -599,6 +712,47 @@
     $(document).ready(function() {
         $('.select1').select2();
     });
+    $(document).ready(function() {
+        $('.select3').select2();
+    });
+</script>
+<!---Get State Data ---->
+<script type="text/javascript">
+    $(document).ready(function() {
+        var countryId = $('#country_id').val();
+        var stateId = "{{ !empty($editemployee->state_id) ? $editemployee->state_id : '' }}";
+
+        if (countryId) {
+            loadCities(countryId, stateId);
+        }
+
+        $('#country_id').change(function() {
+            var countryId = $(this).val();
+            loadCities(countryId, null);
+        });
+
+        function loadCities(countryId, selectedStateId) {
+            if (countryId) {
+                $.ajax({
+                    url: '{{ route("admin.getStates") }}',
+                    type: 'GET',
+                    data: {
+                        country_id: countryId
+                    },
+                    success: function(data) {
+                        $('#state_id').empty();
+                        $('#state_id').append('<option value="">Choose State Name</option>');
+                        $.each(data, function(key, value) {
+                            $('#state_id').append('<option value="' + key + '"' + (selectedStateId == key ? ' selected' : '') + '>' + value + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#state_id').empty();
+                $('#state_id').append('<option value="">First Choose Country Name</option>');
+            }
+        }
+    });
 </script>
 <!---Get City Data ---->
 <script type="text/javascript">
@@ -638,42 +792,82 @@
         }
     });
 </script>
-<!---Get Department Data ---->
+
+<!---Get Permanent City Data ---->
 <script type="text/javascript">
-$(document).ready(function() {
-    var companyId = $('#company_id').val();
-    var departmentId = "{{ !empty($editdesignation->department_id) ? $editdesignation->department_id : '' }}";
+    $(document).ready(function() {
+        var stateId = $('#state_id').val();
+        var cityId = "{{ !empty($editemployee->city_id) ? $editemployee->city_id : '' }}";
 
-    if (companyId) {
-        loadDepartments(companyId, departmentId);
-    }
-
-    $('#company_id').change(function() {
-        var companyId = $(this).val();
-        loadDepartments(companyId, null);
-    });
-
-    function loadDepartments(companyId, selectedDepartmentId) {
-        if (companyId) {
-            $.ajax({
-                url: '{{ route("admin.getDepartments") }}',
-                type: 'GET',
-                data: { company_id: companyId },
-                success: function(data) {
-                    $('#department_id').empty();
-                    $('#department_id').append('<option value="">Choose Department Name</option>');
-                    $.each(data, function(key, value) {
-                        $('#department_id').append('<option value="'+ key +'"' + (selectedDepartmentId == key ? ' selected' : '') + '>'+ value +'</option>');
-                    });
-                }
-            });
-        } else {
-            $('#department_id').empty();
-            $('#department_id').append('<option value="">First Choose Company Name</option>');
+        if (stateId) {
+            loadCities(stateId, cityId);
         }
-    }
-});
 
+        $('#state_id').change(function() {
+            var stateId = $(this).val();
+            loadCities(stateId, null);
+        });
+
+        function loadCities(stateId, selectedCityId) {
+            if (stateId) {
+                $.ajax({
+                    url: '{{ route("admin.getCities") }}',
+                    type: 'GET',
+                    data: {
+                        state_id: stateId
+                    },
+                    success: function(data) {
+                        $('#pcity_id').empty();
+                        $('#pcity_id').append('<option value="">Choose City Name</option>');
+                        $.each(data, function(key, value) {
+                            $('#pcity_id').append('<option value="' + key + '"' + (selectedCityId == key ? ' selected' : '') + '>' + value + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#pcity_id').empty();
+                $('#pcity_id').append('<option value="">First Choose State Name</option>');
+            }
+        }
+    });
 </script>
+<!---Get Department Data ---->
+<!-- <script type="text/javascript">
+    $(document).ready(function() {
+        var companyId = $('#company_id').val();
+        var departmentId = "{{ !empty($editdesignation->department_id) ? $editdesignation->department_id : '' }}";
+
+        if (companyId) {
+            loadDepartments(companyId, departmentId);
+        }
+
+        $('#company_id').change(function() {
+            var companyId = $(this).val();
+            loadDepartments(companyId, null);
+        });
+
+        function loadDepartments(companyId, selectedDepartmentId) {
+            if (companyId) {
+                $.ajax({
+                    url: '{{ route("admin.getDepartments") }}',
+                    type: 'GET',
+                    data: {
+                        company_id: companyId
+                    },
+                    success: function(data) {
+                        $('#department_id').empty();
+                        $('#department_id').append('<option value="">Choose Department Name</option>');
+                        $.each(data, function(key, value) {
+                            $('#department_id').append('<option value="' + key + '"' + (selectedDepartmentId == key ? ' selected' : '') + '>' + value + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#department_id').empty();
+                $('#department_id').append('<option value="">First Choose Company Name</option>');
+            }
+        }
+    });
+</script> -->
 
 @endsection
