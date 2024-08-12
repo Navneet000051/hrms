@@ -12,45 +12,20 @@
 <div id="main-content">
     <div class="container-fluid">
 
-        <div class="block-header py-lg-4 py-3">
+        <div class="block-header py-lg-2 py-2">
             <div class="row g-3">
 
                 <div class="col-md-6 col-sm-12">
-                    <h2 class="m-0 fs-5"><a href="javascript:void(0);" class="btn btn-sm btn-link ps-0 btn-toggle-fullwidth"><i class="fa fa-arrow-left"></i></a> Employee List</h2>
+                    <h2 class="m-0 fs-5"><a href="javascript:void(0);" class="btn btn-sm btn-link ps-0 btn-toggle-fullwidth"><i class="fa fa-arrow-left"></i></a> Add Employee</h2>
 
                 </div>
-                <div class="col-md-6 col-sm-12 text-md-end">
-                    <div class="d-inline-flex text-start">
-                        <div class="me-2">
-                            <h6 class="mb-0"><i class="fa fa-user"></i> 1,784</h6>
-                            <small>Visitors</small>
-                        </div>
-                        <span id="bh_visitors"></span>
-                    </div>
-                    <div class="d-inline-flex text-start ms-lg-3 me-lg-3 ms-1 me-1">
-                        <div class="me-2">
-                            <h6 class="mb-0"><i class="fa fa-globe"></i> 325</h6>
-                            <small>Visits</small>
-                        </div>
-                        <span id="bh_visits"></span>
-                    </div>
-                    <div class="d-inline-flex text-start">
-                        <div class="me-2">
-                            <h6 class="mb-0"><i class="fa fa-comments"></i> 13</h6>
-                            <small>Chats</small>
-                        </div>
-                        <span id="bh_chats"></span>
-                    </div>
-                </div>
+
             </div>
         </div>
         <div class="row g-3 pb-5">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h6 class="card-title">Add Employee</h6>
 
-                    </div>
                     <div class="card-body">
                         <form id="wizard_with_validation" method="POST">
 
@@ -114,12 +89,11 @@
                                             @enderror
                                         </div>
                                     </div>
-
                                     <div class="mb-3 col-sm-12 col-lg-4">
                                         <div class="row">
                                             <div class="col-12 mb-3">
                                                 <div class="form-group">
-                                                    <label class="form-label">State <small class="text-danger">*</small></label>
+                                                    <label class="form-label">Gender <small class="text-danger">*</small></label>
                                                     <select class="form-select select1" aria-label="Default select example" name="gender">
                                                         <option selected>Choose Gender</option>
 
@@ -135,7 +109,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label class="form-label">State <small class="text-danger">*</small></label>
+                                                    <label class="form-label">Marital Status <small class="text-danger">*</small></label>
                                                     <select class="form-select select1" aria-label="Default select example" name="maritalstatus">
                                                         <option selected>Marital Status</option>
 
@@ -191,58 +165,65 @@
                             <fieldset>
                                 <div class="row g-2">
                                     <h6 class="card-title">Residential Address</h6>
-                                    <div class="mb-3 col-sm-12 col-lg-3">
-                                        <div class="form-group">
-                                            <label class="form-label">Country <small class="text-danger">*</small></label>
-                                            <select class="form-select select1" aria-label="Default select example" name="country" id="country_id">
-                                                <option value="">Choose Country</option>
-                                                @foreach($countries as $country)
-                                                <option value="{{ $country->id }}">{{ $country->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('country')
-                                            <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-3 col-sm-12 col-lg-3">
-                                        <div class="form-group">
-                                            <label class="form-label">State <small class="text-danger">*</small></label>
-                                            <select class="form-select select1" aria-label="Default select example" name="state" id="state_id">
-                                                <option selected>Choose Country First</option>
-                                            </select>
-                                            @error('state')
-                                            <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 col-sm-12 col-lg-3">
-                                        <div class="form-group">
-                                            <label class="form-label">City <small class="text-danger">*</small></label>
-                                            <select class="form-select select1" aria-label="Default select example" name="city" id="city_id">
-                                                <option selected>Choose State First</option>
-                                            </select>
-                                            @error('city')
-                                            <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 col-sm-12 col-lg-3">
-                                        <div class="form-group">
-                                            <label class="form-label">Pincode <small class="text-danger">*</small></label>
-                                            <input type="text" class="form-control" name="pincode" id="pincode" placeholder="Pincode">
-                                            @error('pincode')
-                                            <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 col-sm-12 col-lg-12">
+                                    <div class="mb-3 col-sm-12 col-lg-4">
                                         <div class="form-group">
                                             <label class="form-label">Residential Address <small class="text-danger">*</small></label>
-                                            <textarea name="address" id="residential_address" cols="30" rows="3" placeholder="Address *" class="form-control no-resize" required></textarea>
+                                            <textarea name="address" id="residential_address" cols="30" rows="4" placeholder="Address *" class="form-control no-resize pt-3" required></textarea>
                                         </div>
                                     </div>
+                                    <div class="col-sm-12 col-lg-8">
+                                        <div class="row g-2">
+                                            <div class="mb-1 col-sm-12 col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Country <small class="text-danger">*</small></label>
+                                                    <select class="form-select select1" aria-label="Default select example" name="country" id="country_id">
+                                                        <option value="">Choose Country</option>
+                                                        @foreach($countries as $country)
+                                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('country')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-1 col-sm-12 col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">State <small class="text-danger">*</small></label>
+                                                    <select class="form-select select1" aria-label="Default select example" name="state" id="state_id">
+                                                        <option selected>Choose Country First</option>
+                                                    </select>
+                                                    @error('state')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 col-sm-12 col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">City <small class="text-danger">*</small></label>
+                                                    <select class="form-select select1" aria-label="Default select example" name="city" id="city_id">
+                                                        <option selected>Choose State First</option>
+                                                    </select>
+                                                    @error('city')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 col-sm-12 col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Pincode <small class="text-danger">*</small></label>
+                                                    <input type="text" class="form-control" name="pincode" id="pincode" placeholder="Pincode">
+                                                    @error('pincode')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                    </div>
+                                    </div>
+
+
+
                                     <h6 class="card-title">Permanent Address</h6>
                                     <div class="col-sm-12">
                                         <div class="form-group">
@@ -254,57 +235,63 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mb-3 col-sm-12 col-lg-3">
-                                        <div class="form-group">
-                                            <label class="form-label">Country <small class="text-danger">*</small></label>
-                                            <select class="form-select select4" aria-label="Default select example" name="permanent_country" id="permanent_country_id">
-                                                <option selected>Choose Country</option>
-                                                @foreach($countries as $pcountry)
-                                                <option value="{{ $pcountry->id }}" @if(!empty($editemployee) && $editemployee->permanent_country_id == $pcountry->id) selected @endif>{{ $pcountry->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('permanent_country')
-                                            <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 col-sm-12 col-lg-3">
-                                        <div class="form-group">
-                                            <label class="form-label">State <small class="text-danger">*</small></label>
-                                            <select class="form-select select3" aria-label="Default select example" name="permanent_state" id="permanent_state_id">
-                                                <option selected>Choose Country First</option>
-                                            </select>
-                                            @error('permanent_state')
-                                            <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 col-sm-12 col-lg-3">
-                                        <div class="form-group">
-                                            <label class="form-label">City <small class="text-danger">*</small></label>
-                                            <select class="form-select select3" aria-label="Default select example" name="permanent_city" id="permanent_city_id">
-                                                <option selected>Choose State First</option>
-                                            </select>
-                                            @error('permanent_city')
-                                            <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 col-sm-12 col-lg-3">
-                                        <div class="form-group">
-                                            <label class="form-label">Pincode <small class="text-danger">*</small></label>
-                                            <input type="text" class="form-control" name="permanent_pincode" id="permanent_pincode" placeholder="Pincode">
-                                            @error('permanent_pincode')
-                                            <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 col-sm-12 col-lg-12">
+                                    <div class="mb-3 col-sm-12 col-lg-4">
                                         <div class="form-group">
                                             <label class="form-label">Permanent Address <small class="text-danger">*</small></label>
-                                            <textarea name="permanent_address" id="permanent_address" cols="30" rows="3" placeholder="Address *" class="form-control no-resize" required></textarea>
+                                            <textarea name="permanent_address" id="permanent_address" cols="30" rows="4" placeholder="Address *" class="form-control no-resize pt-3" required></textarea>
                                         </div>
                                     </div>
+                                    <div class="mb-3 col-sm-12 col-lg-8">
+                                        <div class="row g-2">
+                                            <div class="mb-1 col-sm-12 col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Country <small class="text-danger">*</small></label>
+                                                    <select class="form-select select4" aria-label="Default select example" name="permanent_country" id="permanent_country_id">
+                                                        <option selected>Choose Country</option>
+                                                        @foreach($countries as $pcountry)
+                                                        <option value="{{ $pcountry->id }}" @if(!empty($editemployee) && $editemployee->permanent_country_id == $pcountry->id) selected @endif>{{ $pcountry->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('permanent_country')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="mb-1 col-sm-12 col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">State <small class="text-danger">*</small></label>
+                                                    <select class="form-select select3" aria-label="Default select example" name="permanent_state" id="permanent_state_id">
+                                                        <option selected>Choose Country First</option>
+                                                    </select>
+                                                    @error('permanent_state')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 col-sm-12 col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">City <small class="text-danger">*</small></label>
+                                                    <select class="form-select select3" aria-label="Default select example" name="permanent_city" id="permanent_city_id">
+                                                        <option selected>Choose State First</option>
+                                                    </select>
+                                                    @error('permanent_city')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 col-sm-12 col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Pincode <small class="text-danger">*</small></label>
+                                                    <input type="text" class="form-control" name="permanent_pincode" id="permanent_pincode" placeholder="Pincode">
+                                                    @error('permanent_pincode')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                 </div>
                             </fieldset>
                             <h3>Company Information</h3>
@@ -373,14 +360,13 @@
                                             @enderror
                                         </div>
                                     </div>
-
                                     <div class="mb-3 col-sm-12 col-lg-3">
                                         <div class="form-group">
                                             <label class="form-label">Role <small class="text-danger">*</small></label>
                                             <select class="form-select select1" aria-label="Default select example" name="role_id">
                                                 <option value="">Choose Role</option>
                                                 @foreach($roles as $role)
-                                                <option value="$role->id" @if(!empty($editemployee) && $editemployee->role_id == $role->id) selected @endif>$role->name</option>
+                                                <option value="{{ $role->id }}" @if(!empty($editemployee) && $editemployee->role_id == $role->id) selected @endif>{{ $role->role_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -392,45 +378,122 @@
                             <h3>Document Information</h3>
                             <fieldset>
                                 <div class="row g-2">
+                                   
                                     <h6 class="card-title">Bank Information</h6>
                                     <div class="mb-3  col-sm-12 col-lg-4">
                                         <div class="form-group">
                                             <label class="form-label">Bank Name <small class="text-danger">*</small></label>
-                                            <input type="text" class="form-control" placeholder="Bank Name  *" name="username">
+                                            <input type="text" class="form-control" placeholder="Bank Name  *" name="bankname">
+                                            @error('bankname')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
 
                                     <div class="mb-3  col-sm-12 col-lg-4">
                                         <div class="form-group">
                                             <label class="form-label">Account Number <small class="text-danger">*</small></label>
-                                            <input type="text" class="form-control" placeholder="Account Number*" name="confirm">
+                                            <input type="text" class="form-control" placeholder="Account Number*" name="accountnumber">
+                                            @error('accountnumber')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="mb-3  col-sm-12 col-lg-4">
                                         <div class="form-group">
                                             <label class="form-label">IFSC code <small class="text-danger">*</small></label>
-                                            <input type="text" class="form-control" placeholder="IFSC code*" name="confirm">
+                                            <input type="text" class="form-control" placeholder="IFSC code*" name="ifsccode">
+                                            @error('ifsccode')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="mb-3  col-sm-12 col-lg-4">
                                         <div class="form-group">
                                             <label class="form-label">Bank Address <small class="text-danger">*</small></label>
-                                            <textarea name="address" placeholder=" Bank Address *" class="form-control no-resize" style="height:120px !important;"></textarea>
+                                            <textarea name="bankaddress" placeholder=" Bank Address *" class="form-control no-resize" style="height:120px !important;"></textarea>
+                                            @error('bankaddress')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="mb-3  col-sm-12 col-lg-4">
                                         <div class="form-group">
-                                            <label class="form-label">Document1 <small class="text-danger">*</small></label>
-                                            <input type="file" class="dropify">
+                                            <label class="form-label">Bank Document1 <small class="text-danger">*</small></label>
+                                            <input type="file" class="dropify" name="bankdoc1">
+                                            @error('bankdoc1')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
-                                    </div>
-                                    <div class="mb-3  col-sm-12 col-lg-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Document2 <small class="text-danger">*</small></label>
-                                            <input type="file" class="dropify">
-                                        </div>
-                                    </div>
 
+                                    </div>
+                                    <div class="mb-3  col-sm-12 col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Bank Document2 <small class="text-danger">*</small></label>
+                                            <input type="file" class="dropify" name="bankdoc2">
+                                            @error('bankdoc2')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <h6 class="card-title">Personal Information</h6>
+                                    <div class="mb-3  col-sm-12 col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Aadhar Card <small class="text-danger">*</small></label>
+                                            <input type="file" class="dropify" name="aadhar">
+                                            @error('aadhar')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+
+                                    </div>
+                                    <div class="mb-3  col-sm-12 col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Pan card <small class="text-danger">*</small></label>
+                                            <input type="file" class="dropify" name="pancard">
+                                            @error('pancard')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-3  col-sm-12 col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Domicile Certificate <small class="text-danger">*</small></label>
+                                            <input type="file" class="dropify" name="domicile">
+                                            @error('domicile')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+
+                                    </div>
+                                    <div class="mb-3  col-sm-12 col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Highschool Certificate <small class="text-danger">*</small></label>
+                                            <input type="file" class="dropify" name="educationdoc1">
+                                            @error('educationdoc1')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-3  col-sm-12 col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Intermediate Certificate <small class="text-danger">*</small></label>
+                                            <input type="file" class="dropify" name="educationdoc2">
+                                            @error('educationdoc2')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+
+                                    </div>
+                                    <div class="mb-3  col-sm-12 col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Graduation Certificate <small class="text-danger">*</small></label>
+                                            <input type="file" class="dropify" name="educationdoc3">
+                                            @error('educationdoc3')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
                             </fieldset>
 
@@ -441,7 +504,7 @@
         </div>
 
 
-        <div class="row clearfix">
+        {{-- <div class="row clearfix">
             <div class="col-lg-12">
                 <div class="card mb-4">
                     <div class="card-header">
@@ -593,7 +656,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
     </div>
 </div>
@@ -908,28 +971,32 @@
         var designationId = "{{ !empty($editdesignation->designation_id) ? $editdesignation->designation_id : '' }}";
 
         if (departmentId) {
-            loadDepartments(departmentId, designationId);
+            loadDesignation(departmentId, designationId);
         }
 
         $('#department_id').change(function() {
             var departmentId = $(this).val();
-            loadDepartments(departmentId, null);
+            loadDesignation(departmentId, null);
         });
 
-        function loadDepartments(departmentId, selectedDesignationId) {
+        function loadDesignation(departmentId, selectedDesignationId) {
             if (departmentId) {
                 $.ajax({
-                    url: '{{ route("admin.getDepartments") }}',
+                    url: '{{ route("admin.getDesignations") }}',
                     type: 'GET',
                     data: {
                         department_id: departmentId
                     },
                     success: function(data) {
+                        console.log(data); // Debugging: Check if data is being received
                         $('#designation_id').empty();
                         $('#designation_id').append('<option value="">Choose Designation Name</option>');
                         $.each(data, function(key, value) {
                             $('#designation_id').append('<option value="' + key + '"' + (selectedDesignationId == key ? ' selected' : '') + '>' + value + '</option>');
                         });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX Error:', status, error); // Debugging: Log any errors
                     }
                 });
             } else {
@@ -939,5 +1006,6 @@
         }
     });
 </script>
+
 
 @endsection

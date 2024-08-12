@@ -34,17 +34,12 @@ class EmployeeController extends Controller
         }
     
 
-      $data['countries'] = country::where('status',1)->get();
-    //   $data['pcountries'] = country::where('status',1)->get();
-    //   $data['states'] = state::where('status',1)->get();
-    //   $data['cities'] = city::where('status',1)->get(); 
+      $data['countries'] = country::where('status',1)->get(); 
       $data['companies'] = Company::where('status', 1)->get();     
       $data['departments'] = Department::where('status', 1)->get();     
       $data['roles'] = Roles::where('status', 1)->get();     
       $data['title'] = 'Employee';
       $data['designations'] = Designation::where('status', 1)->get();
-    //   echo "<pre>";
-    //   var_dump($data);exit();
     return view('admin.employee',$data);
    }
 }
