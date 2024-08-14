@@ -156,8 +156,54 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    <div class="mb-3 col-sm-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Aadhar Number <small class="text-danger">*</small></label>
+                                            <input type="text" name="aadharnumber" placeholder="First Name *" class="form-control">
+                                            @error('aadharnumber')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
 
+                                    </div>
+                                    <div class="mb-3 col-sm-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Pan Number <small class="text-danger">*</small></label>
+                                            <input type="text" name="pannumber" placeholder="Last Name *" class="form-control">
+                                            @error('pannumber')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-3  col-sm-12 col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Aadhar Card <small class="text-danger">*</small></label>
+                                            <input type="file" class="dropify" name="aadhar">
+                                            @error('aadhar')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
 
+                                    </div>
+                                    <div class="mb-3  col-sm-12 col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Pan card <small class="text-danger">*</small></label>
+                                            <input type="file" class="dropify" name="pancard">
+                                            @error('pancard')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="mb-3  col-sm-12 col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Domicile Certificate <small class="text-danger">*</small></label>
+                                            <input type="file" class="dropify" name="domicile">
+                                            @error('domicile')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+
+                                    </div>
 
                                 </div>
                             </fieldset>
@@ -219,7 +265,7 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                    </div>
+                                        </div>
                                     </div>
 
 
@@ -378,7 +424,7 @@
                             <h3>Document Information</h3>
                             <fieldset>
                                 <div class="row g-2">
-                                   
+
                                     <h6 class="card-title">Bank Information</h6>
                                     <div class="mb-3  col-sm-12 col-lg-4">
                                         <div class="form-group">
@@ -389,7 +435,6 @@
                                             @enderror
                                         </div>
                                     </div>
-
                                     <div class="mb-3  col-sm-12 col-lg-4">
                                         <div class="form-group">
                                             <label class="form-label">Account Number <small class="text-danger">*</small></label>
@@ -437,7 +482,7 @@
                                         </div>
                                     </div>
                                     <h6 class="card-title">Personal Information</h6>
-                                    <div class="mb-3  col-sm-12 col-lg-4">
+                                    <!-- <div class="mb-3  col-sm-12 col-lg-4">
                                         <div class="form-group">
                                             <label class="form-label">Aadhar Card <small class="text-danger">*</small></label>
                                             <input type="file" class="dropify" name="aadhar">
@@ -465,8 +510,8 @@
                                             @enderror
                                         </div>
 
-                                    </div>
-                                    <div class="mb-3  col-sm-12 col-lg-4">
+                                    </div> -->
+                                    <!-- <div class="mb-3  col-sm-12 col-lg-4">
                                         <div class="form-group">
                                             <label class="form-label">Highschool Certificate <small class="text-danger">*</small></label>
                                             <input type="file" class="dropify" name="educationdoc1">
@@ -493,8 +538,43 @@
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
+                                    </div> -->
+
+
+                                    <div id="req_input" class="datainputs">
+                                        <div class="row g-2">
+                                            <div class="mb-3  col-sm-12 col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Role <small class="text-danger">*</small></label>
+                                                    <select class="form-select" aria-label="Default select example" name="role_id">
+                                                        <option value="">Document Type</option>
+                                                        <option value="highschool">High School</option>
+                                                        <option value="intermediate">Intermediate</option>
+                                                        <option value="graduation">Graduation</option>
+                                                        <option value="others">Others</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3  col-sm-11 col-lg-5">
+                                                <div class="form-group">
+                                                    <label class="form-label">Domicile Certificate <small class="text-danger">*</small></label>
+                                                    <input type="file" class="form-control" name="domicile">
+                                                    @error('domicile')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+
+                                            </div>
+                                            <!-- <a href="#" id="addmore" class="add_input">Add more</a> -->
+                                            <div class="mb-3 col-sm-1 col-lg-1 align-self-center">
+                                                <label class="form-label"></label>
+                                                <div class="form-group">
+                                                    <a class="btn btn-sm btn-outline-primary add_input " id="addmore" title="Edit"><i class="fa fa-plus-circle"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
                             </fieldset>
 
                         </form>
@@ -571,7 +651,7 @@
                                     <td>21 July, 2015</td>
                                     <td>Web Developer</td>
                                     <td>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary" title="Edit"><i class="fa fa-edit"></i></button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" title="Edit"><i class="fa fa-plus-circle"></i></button>
                                         <button type="button" class="btn btn-sm btn-outline-danger js-sweetalert" title="Delete" data-type="confirm"><i class="fa fa-trash-o"></i></button>
                                     </td>
                                 </tr>
@@ -752,6 +832,46 @@
             });
     });
 </script>
+<script>
+    $(document).ready(function() {
+        $("#addmore").click(function() {
+            var newRow = `
+                <div class="row g-2 required_inp">
+                    <div class="mb-3 col-sm-12 col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label">Role <small class="text-danger">*</small></label>
+                            <select class="form-select select3" aria-label="Default select example" name="role_id">
+                                <option value="">Document Type</option>
+                                <option value="highschool">High School</option>
+                                <option value="intermediate">Intermediate</option>
+                                <option value="graduation">Graduation</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3 col-sm-11 col-lg-5">
+                        <div class="form-group">
+                            <label class="form-label">Domicile Certificate <small class="text-danger">*</small></label>
+                            <input type="file" class="form-control" name="domicile">
+                        </div>
+                    </div>
+                    <div class="mb-3 col-sm-1 col-lg-1 align-self-center">
+                        <label class="form-label"></label>
+                        <div class="form-group">
+                            <a class="btn btn-sm btn-outline-danger inputRemove" title="Remove"><i class="fa fa-minus-circle"></i></a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            $("#req_input").append(newRow);
+        });
+
+        $('body').on('click', '.inputRemove', function() {
+            $(this).closest('.required_inp').remove();
+        });
+    });
+</script>
+
 
 <script>
     $(document).ready(function() {
@@ -795,7 +915,9 @@
                 $.ajax({
                     url: '{{ route("admin.getStates") }}',
                     type: 'GET',
-                    data: { country_id: countryId },
+                    data: {
+                        country_id: countryId
+                    },
                     success: function(data) {
                         $('#state_id').empty();
                         $('#state_id').append('<option value="">Choose State Name</option>');
