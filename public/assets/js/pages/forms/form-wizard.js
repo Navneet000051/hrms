@@ -1,46 +1,12 @@
 $(function () {
-  //Horizontal form basic
-  $("#wizard_horizontal").steps({
-    headerTag: "h2",
-    bodyTag: "section",
-    transitionEffect: "slideLeft",
-    onInit: function (event, currentIndex) {
-      setButtonWavesEffect(event);
-    },
-    onStepChanged: function (event, currentIndex, priorIndex) {
-      setButtonWavesEffect(event);
-    },
-  });
-
-  //Vertical form basic
-  $("#wizard_vertical").steps({
-    headerTag: "h2",
-    bodyTag: "section",
-    transitionEffect: "slideLeft",
-    stepsOrientation: "vertical",
-    onInit: function (event, currentIndex) {
-      setButtonWavesEffect(event);
-    },
-    onStepChanged: function (event, currentIndex, priorIndex) {
-      setButtonWavesEffect(event);
-    },
-  });
-
-  //Advanced form with validation
+  // Initialize the form wizard
   var form = $("#wizard_with_validation").show();
+  
   form.steps({
     headerTag: "h3",
     bodyTag: "fieldset",
     transitionEffect: "slideLeft",
     onInit: function (event, currentIndex) {
-      $.AdminInfiniO.input.activate();
-
-      //Set tab width
-      var $tab = $(event.currentTarget).find('ul[role="tablist"] li');
-      var tabCount = $tab.length;
-      $tab.css("width", 100 / tabCount + "%");
-
-      //set button waves effect
       setButtonWavesEffect(event);
     },
     onStepChanging: function (event, currentIndex, newIndex) {
@@ -64,7 +30,9 @@ $(function () {
       return form.valid();
     },
     onFinished: function (event, currentIndex) {
-      swal("Good job!", "Submitted!", "success");
+      // Here, we use a standard form submission
+      // Since you want a normal form submit, the form will submit automatically
+      form.submit(); // This triggers a standard form submit
     },
   });
 

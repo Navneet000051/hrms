@@ -22,7 +22,8 @@ $currentRoute = Route::currentRouteName();
     <link rel="stylesheet" href="{{asset('assets/css/tagsinput.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/plugin/bootstrap-colorpicker/css/bootstrap-colorpicker.css')}}">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.12.4/sweetalert2.min.css" />
+    
     <link rel="stylesheet" href="{{asset('assets/css/dataTables.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/dropify.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
@@ -393,6 +394,7 @@ $currentRoute = Route::currentRouteName();
     <script src="{{asset('assets/bundles/nouislider.bundle.js')}}"></script>
     <script src="{{asset('assets/bundles/tagsinput.bundle.js')}}"></script>
     <script src="{{asset('assets/bundles/select2.bundle.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.12.4/sweetalert2.min.js"></script>
     <script src="{{asset('assets/plugin/bootstrap-colorpicker/js/bootstrap-colorpicker.js')}}"></script>
     <script src="{{asset('assets/bundles/inputmask.bundle.js')}}"></script>
     <script src="{{asset('assets/bundles/maskedinput.bundle.js')}}"></script>
@@ -410,6 +412,7 @@ $currentRoute = Route::currentRouteName();
     <script src="{{asset('assets/bundles/toastr.bundle.js')}}"></script>
     <!-- Dropify Js -->
     <script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
+    
     <script>
         $(document).ready(function() {
             $('.dropify').dropify({

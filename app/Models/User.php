@@ -2,15 +2,13 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -18,9 +16,46 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'emp_id',
         'name',
+        'lastname',
         'email',
         'password',
+        'mobile',
+        'alternatemobile',
+        'address',
+        'permanentaddress',
+        'city_id',
+        'state_id',
+        'country_id',
+        'pincode',
+        'pcity_id',
+        'pstate_id',
+        'pcountry_id',
+        'p_pincode',
+        'role_id',
+        'gender',
+        'marital_status',
+        'dob',
+        'company_id',
+        'department_id',
+        'designation_id',
+        'joindate',
+        'confirmdate',
+        'exitdate',
+        'bankname',
+        'accountnumber',
+        'ifsccode',
+        'bankaddress',
+        'bankdoc1',
+        'bankdoc2',
+        'aadhar',
+        'pancard',
+        'domicile',
+        'aadharno',
+        'pancardno',
+        'educationdocument',
+        'status',
     ];
 
     /**
@@ -40,5 +75,27 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        // Remove 'educationdocument' from here as it's handled manually
     ];
+
+    /**
+     * Accessor for educationdocument attribute.
+     *
+     * @param  string  $value
+     * @return array
+     */
+    public function educationDocuments()
+    {
+        return $this->hasMany(EducationDocument::class);
+    }
+    /**
+     * Mutator for educationdocument attribute.
+     *
+     * @param  array  $value
+     * @return void
+     */
+    public function setEducationdocumentAttribute($value)
+    {
+        $this->attributes['educationdocument'] = json_encode($value); // Encode array to JSON string
+    }
 }

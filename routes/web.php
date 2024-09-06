@@ -73,8 +73,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('/holidays', [HolidaysController::class, 'index'])->name('holidays');
 
-        // employee section ==============================================
-        Route::get('/employee', [EmployeeController::class, 'index'])->name('employee');
+
+  // employee section ==============================================
+  Route::get('/employee', [EmployeeController::class, 'index'])->name('employee');
+  Route::get('/get-employee', [EmployeeController::class, 'getEmployee'])->name('getemployee');
+  Route::post('/addemployee', [EmployeeController::class, 'save'])->name('addemployee');
+  Route::get('/editemployee/{id}', [EmployeeController::class, 'getEmployee'])->name('editemployee');
+
 
         // leave section ==============================================
 
@@ -147,3 +152,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/updatePositions', [UpdatePositionController::class, 'index'])->name('updatePositions');
     });
 });
+
+
+
+
+
+
